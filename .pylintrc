@@ -1,0 +1,13 @@
+[MASTER]
+load-plugins=pylint_django
+
+[MESSAGES CONTROL]
+
+disable=missing-module-docstring,
+        fixme,
+        abstract-method,
+        no-self-use,
+        invalid-name,
+        unused-argument,
+        bad-continuation,
+        import-outside-toplevel

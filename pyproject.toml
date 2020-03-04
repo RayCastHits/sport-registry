@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "backend"
+version = "1.0.0"
+description = "backend"
+authors = ["developer <developer@mail.com>"]
+
+
+[tool.black]
+line-length = 79
+
+
+[tool.isort]
+multi_line_output=3
+include_trailing_comma=true
+use_parentheses=true
+line_length=79
+
+
+[tool.taskipy.tasks]
+manage = "python ./backend/manage.py"
+clear = "python ./backend/manage.py clear"
+dumpdata = "python ./backend/manage.py dump"
+migrate = "python ./backend/manage.py migrate"
+server = "python ./backend/manage.py runserver"
+loaddata = "python ./backend/manage.py loaddata"
+startapp = "python ./backend/manage.py createapp"
+initconfig = "python ./backend/manage.py initconfig"
+dockervolumes = "python ./backend/manage.py dockervolumes"
+makemigrations = "python ./backend/manage.py makemigrations"
+createsuperuser = "python ./backend/manage.py createsuperuser"
+collectstatic = "python ./backend/manage.py collectstatic --noinput"
+gunicorn = "gunicorn --chdir ./backend config.wsgi:application -b 0.0.0.0:8000"
+
+
+[tool.poetry.dependencies]
+python = "^3.7, <3.9"
+django = "^3.0.3"
+django-cleanup = "^4.0.0"
+django-widget-tweaks = "^1.4.5"
+django-settings-export = "^1.2.1"
+django-webpack-loader = "^0.6.0"
+djangorestframework = "^3.11.0"
+django-cors-headers = "^3.2.1"
+drf-yasg = "^1.17.0"
+arrow = "^0.15.5"
+django-import-export = "^2.0.1"
+django-environ = "^0.4.5"
+gunicorn = "^20.0.4"
+mysqlclient = "^1.4.6"
+psycopg2 = "^2.8.4"
+pillow = "^7.0.0"
+django-storages = "^1.9.1"
+django-etc = "^1.2.0"
+django-rest-multiple-models = "^2.1.3"
+django-constance = {extras = ["database"], version = "^2.6.0"}
+django-template-block-args = "^0.0.5"
+django-hijack = "^2.1.10"
+django-hijack-admin = "^2.1.10"
+
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.4.4"
+django-debug-toolbar = "^2.2"
+autopep8 = "^1.5"
+pylint-django = "^2.0.13"
+taskipy = "^1.1.3"
+flake8 = "^3.7.9"
+black = "^19.10b0"

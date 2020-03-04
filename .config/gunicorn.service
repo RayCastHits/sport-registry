@@ -1,0 +1,21 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn_<project>.socket
+After=network.target
+
+[Service]
+Environment="PROJECT_NAME=<project>"
+User=webadmin
+Group=www-data
+WorkingDirectory=/var/www/${PROJECT_NAME}/backend
+ExecStart=/var/www/${PROJECT_NAME}/.venv/bin/gunicorn \
+          --access-logfile - \
+          --error-logfile /var/www/${PROJECT_NAME}/public/logs/gunicorn.log \
+          --capture-output \
+          --enable-stdio-inheritance \
+          --workers 3 \
+          --bind unix:/run/gunicorn_${PROJECT_NAME}.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

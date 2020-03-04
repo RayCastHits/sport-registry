@@ -1,0 +1,28 @@
+{% load i18n static hijack_tags %}
+{% load render_bundle from utils %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'ru' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}{% trans "Site name" %}{% endblock title %}</title>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
+  {% if request|is_hijacked %}
+    <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
+  {% endif %}
+  {% render_bundle 'chunk-vendors' 'css' %}
+  {% render_bundle 'app' 'css' %}
+  {% block head %}{% endblock head %}
+</head>
+<body>
+  {% hijack_notification %}
+  <div class="wrapper">
+    {% block body %}{% endblock body %}
+  </div>
+  {% render_bundle 'chunk-vendors' 'js' %}
+  {% render_bundle 'app' 'js' %}
+  {% block bottom %}{% endblock bottom %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+{% load i18n static %}
+
+{% block head %}
+  {% block links %}
+  {% endblock links %}
+{% endblock head %}
+
+{% block body %}
+  <header class="header">
+    {% block header %}
+    {% endblock header %}
+  </header>
+  <main class="main">
+    {% block content %}
+    {% endblock content %}
+  </main>
+  <footer class="footer">
+    {% block footer %}
+    {% endblock footer %}
+  </footer>
+{% endblock body %}
+
+{% block bottom %}
+  {% block scripts %}
+  {% endblock scripts %}
+{% endblock bottom %}

@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+{% load i18n static components %}
+
+{% block head %}
+  {% block links %}
+  {% endblock links %}
+{% endblock head %}
+
+{% block body %}
+  {% noscript _("Ваш браузер не поддерживает скрипты") %}
+  <div id="app" class="vue-app"> {% comment %} Not remove this line {% endcomment %}
+    <app> {% comment %} Not remove this line {% endcomment %}
+      <header class="header">
+        {% block header %}
+        {% endblock header %}
+      </header>
+      <main class="main">
+        {% block content %}
+        {% endblock content %}
+      </main>
+      <footer class="footer">
+        {% block footer %}
+        {% endblock footer %}
+      </footer>
+    </app> {% comment %} Not remove this line {% endcomment %}
+  </div> {% comment %} Not remove this line {% endcomment %}
+{% endblock body %}
+
+{% block bottom %}
+  {% block scripts %}
+  {% endblock scripts %}
+{% endblock bottom %}

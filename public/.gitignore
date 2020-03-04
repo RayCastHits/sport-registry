@@ -1,0 +1,7 @@
+*
+!.gitignore
+!static/
+!logs/
+!media/
+!keys/
+!robots.txt

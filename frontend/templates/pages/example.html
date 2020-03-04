@@ -1,0 +1,16 @@
+{% extends settings.TEMPLATE_LAYOUT %}
+{% load i18n static %}
+
+{% block title %}{% trans "Example Page" %} | {{ block.super }}{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+  <example>
+    {% trans "Static page that is loaded automatically" %}
+  </example>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

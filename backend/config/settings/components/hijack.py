@@ -1,0 +1,3 @@
+"""Hijack setting"""
+HIJACK_REGISTER_ADMIN = False
+HIJACK_ALLOW_GET_REQUESTS = True
