@@ -15,6 +15,11 @@ class ProxyGroup(Group):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    ROLE = (
+        (0, "Администратор"),
+        (1, "Тренер"),
+        (2, "Медицинский персонал"),
+    )
     username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(
@@ -32,6 +37,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
+    patronymic = models.CharField(_("Отчество"), max_length=150, blank=True)
+    role = models.IntegerField(default=1, choices=ROLE, verbose_name="Роль",)
     email = models.EmailField(_("email address"), blank=True)
     is_staff = models.BooleanField(
         _("staff status"),
