@@ -24,12 +24,12 @@
   <div class="wrapper">
     {% block body %}{% endblock body %}
   </div>
-  {% comment %}
+
   {% render_bundle 'chunk-vendors' 'js' %}
   {% render_bundle 'app' 'js' %}
-  {% endcomment %}
+
   {% block bottom %}{% endblock bottom %}
-    <!--   Core JS Files   -->
+    {% comment %} <!--   Core JS Files   -->
   <script src="{% static 'dashboard/assets/js/core/jquery.min.js' %}"></script>
   <script src="{% static 'dashboard/assets/js/core/popper.min.js' %}"></script>
   <script src="{% static 'dashboard/assets/js/core/bootstrap-material-design.min.js' %}"></script>
@@ -238,6 +238,6 @@
         });
       });
     });
-  </script>
+  </script> {% endcomment %}
 </body>
 </html>
