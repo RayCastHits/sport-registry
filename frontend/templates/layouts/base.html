@@ -28,8 +28,8 @@
   {% render_bundle 'chunk-vendors' 'js' %}
   {% render_bundle 'app' 'js' %}
 
-  {% block bottom %}{% endblock bottom %}
-    {% comment %} <!--   Core JS Files   -->
+
+  <!--   Core JS Files   -->
   <script src="{% static 'dashboard/assets/js/core/jquery.min.js' %}"></script>
   <script src="{% static 'dashboard/assets/js/core/popper.min.js' %}"></script>
   <script src="{% static 'dashboard/assets/js/core/bootstrap-material-design.min.js' %}"></script>
@@ -238,6 +238,7 @@
         });
       });
     });
-  </script> {% endcomment %}
+  </script>
+  {% block bottom %}{% endblock bottom %}
 </body>
 </html>

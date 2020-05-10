@@ -69,50 +69,43 @@
 {% endblock nav %}
 
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header card-header-primary">
-          <h4 class="card-title ">{{object_list|first|verbose_name_plural}}</h4>
-          <p class="card-category"> Here is a subtitle for this table</p>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">{{ object }}</h4>
+            <p class="card-category"><a href="{% url 'registry:sportsman-update' object.pk %}">Редактировать</a></p>
+          </div>
+          <div class="card-body">
+            {{ object }}
+            {% if parents %}
+              <h3>Представители:</h3>
+              {% for parent in parents %}
+                {{ parent }}
+              {% endfor %}
+            {% else %}
+              <h3>Нет прдставителей</h3>
+            {% endif %}
+
+          </div>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead class=" text-primary">
-                <tr>
-                  <th>
-                  {% verbose_name_field object_list|first "name" %}
-                  </th>
-                  <th>
-                    {% verbose_name_field object_list|first "surname" %}
-                  </th>
-                  <th>
-                    {% verbose_name_field object_list|first "patronymic" %}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in object_list %}
-                <a href="#">
-                  <tr data-href="{% url 'registry:sportsman-detail' item.pk %}">
-                    <td>
-                      {{item.name}}
-                    </td>
-                    <td>
-                      {{item.surname}}
-                    </td>
-                    <td>
-                      {{item.patronymic}}
-                    </td>
-                  </tr>
-                  </a>
-                {% empty %}
-                  <h1>Пусто</h1>
-                {% endfor %}
-              </tbody>
-            </table>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="javascript:;">
+              <img class="img" src="../assets/img/faces/marc.jpg">
+            </a>
+          </div>
+          <div class="card-body">
+            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+            <h4 class="card-title">Alec Thompson</h4>
+            <p class="card-description">
+              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+            </p>
+            <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>
           </div>
         </div>
       </div>

@@ -50,3 +50,18 @@ def render_bundle(bundle_name, extension=None, config="DEFAULT", attrs=""):
         return mark_safe("\n".join(tags))
     except WebpackBundleLookupError:
         return ""
+
+
+@register.filter
+def verbose_name(obj):
+    return obj._meta.verbose_name
+
+
+@register.filter
+def verbose_name_plural(obj):
+    return obj._meta.verbose_name_plural
+
+
+@register.simple_tag
+def verbose_name_field(instance, field_name):
+    return instance._meta.get_field(field_name).verbose_name.title()
