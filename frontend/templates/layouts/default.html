@@ -10,7 +10,7 @@
   <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
     <div class="logo">
       <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Creative Tim
+        ИНЭКС СОО
       </a>
     </div>
     <div class="sidebar-wrapper">
@@ -21,8 +21,7 @@
   </div>
   <div class="main-panel">
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-      {% block nav %}
-      {% endblock nav %}
+    {% include "components/navbar.html" %}
     </nav>
     <div class="content">
       {% block content %}

@@ -13,8 +13,8 @@ class Sportsman(models.Model):
         (2, "Мезоморф"),
     )
     GENDER = (
-        (False, "М"),
-        (True, "Ж"),
+        (False, "Мужской"),
+        (True, "Женский"),
     )
     SWIMMING = (
         (False, "нет"),
@@ -34,8 +34,8 @@ class Sportsman(models.Model):
     gender = models.BooleanField(
         max_length=10, choices=GENDER, verbose_name="Пол",
     )
-    location = models.TextField(
-        blank=True, null=True, verbose_name="Место жительства"
+    location = models.CharField(
+        max_length=150, blank=True, null=True, verbose_name="Место жительства"
     )
     phone_number = models.CharField(
         max_length=12, verbose_name="Контактный номер", blank=True, null=True

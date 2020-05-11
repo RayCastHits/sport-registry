@@ -1,0 +1,48 @@
+{% extends 'layouts/empty.html' %}
+{% load i18n static utils widget_tweaks  %}
+
+
+{% block content %}
+  <div class="container-fluid h-100 align-items-center d-flex">
+    <div class="row justify-content-center w-100">
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Авторизация</h4>
+            {% comment %} <p class="card-category">Д</p> {% endcomment %}
+          </div>
+          <div class="card-body">
+            <form class="form-model" action="" method="POST" autocomplete="off">
+              {% csrf_token %}
+              {% load widget_tweaks %}
+              <input autocomplete="false" name="hidden" type="text" style="display:none;">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group bmd-form-group">
+                    <label class="bmd-label-floating" for="id_username">
+                      Логин:
+                    </label>
+                    {{ form.username|add_class:"form-control"|remove_attr:"autocomplete" }}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group bmd-form-group">
+                    <label class="bmd-label-floating" for="id_username">
+                      Пароль:
+                    </label>
+                    {{ form.password|add_class:"form-control"|remove_attr:"autocomplete" }}
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <input class="btn btn-primary" type="submit" value="Войти">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

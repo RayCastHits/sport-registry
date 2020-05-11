@@ -2,12 +2,15 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import Sportsman, Parent
 
 from . import forms
 
 
+@method_decorator(login_required, name="dispatch")
 class SportsmanList(ListView):
     """
     Список спортсменов
@@ -17,6 +20,7 @@ class SportsmanList(ListView):
     template_name = "registry/sportsman/list.html"
 
 
+@method_decorator(login_required, name="dispatch")
 class SportsmanDetail(DetailView):
     """
     Детальный просмотр спортсменов
@@ -32,6 +36,7 @@ class SportsmanDetail(DetailView):
         return context
 
 
+@method_decorator(login_required, name="dispatch")
 class SportsmanUpdate(UpdateView):
     """
     Форма спортсменов
