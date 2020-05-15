@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 
 from .models import Sportsman, Parent, SportType, Primary, UMO
 
-from .forms import PrimaryForm
+from .forms import PrimaryForm, UMOForm
 
 # from . import forms
 
@@ -45,7 +45,7 @@ class SportsmanDetail(DetailView):
 @method_decorator(login_required, name="dispatch")
 class SportsmanUpdate(UpdateView):
     """
-    Форма спортсменов
+    Форма обновления спортсменов
     """
 
     model = Sportsman
@@ -58,9 +58,28 @@ class SportsmanUpdate(UpdateView):
 
 
 @method_decorator(login_required, name="dispatch")
+class SportsmanCreate(CreateView):
+    """
+    Форма создания спортсмена
+    """
+
+    model = Sportsman
+    fields = "__all__"
+    template_name = "registry/sportsman/create.html"
+    success_url = reverse_lazy("registry:sportsman-list")
+
+
+@method_decorator(login_required, name="dispatch")
+class SportsmanDelete(DeleteView):
+    """
+    Удаление спортсмена
+    """
+
+
+@method_decorator(login_required, name="dispatch")
 class SportTypeList(ListView):
     """
-    Список виды спорта
+    Список видов спорта
     """
 
     model = SportType
@@ -70,7 +89,7 @@ class SportTypeList(ListView):
 @method_decorator(login_required, name="dispatch")
 class SportTypeUpdate(UpdateView):
     """
-    Форма виды спорта
+    Форма обновления вида спорта
     """
 
     model = SportType
@@ -80,14 +99,47 @@ class SportTypeUpdate(UpdateView):
 
 
 @method_decorator(login_required, name="dispatch")
+class SportTypeCreate(CreateView):
+    """
+    Форма создания вида спорта
+    """
+
+    model = SportType
+    fields = "__all__"
+    template_name = "registry/sporttype/create.html"
+    success_url = reverse_lazy("registry:sporttype-list")
+
+
+@method_decorator(login_required, name="dispatch")
 class PrimaryCreate(CreateView):
     """
-    Форма виды спорта
+    Форма добавления первичного обследования
     """
 
     model = Primary
     form_class = PrimaryForm
     template_name = "registry/primary/create.html"
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.sportsman_id = self.kwargs["pk"]
+        obj.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        return reverse_lazy("registry:sportsman-detail", kwargs={"pk": pk})
+
+
+@method_decorator(login_required, name="dispatch")
+class UMOCreate(CreateView):
+    """
+    Форма добавления углубленного обследования
+    """
+
+    model = UMO
+    form_class = UMOForm
+    template_name = "registry/umo/create.html"
 
     def form_valid(self, form):
         obj = form.save(commit=False)

@@ -83,6 +83,10 @@
                           <td><span class="font-weight-bold">Успеваемость в школе:</span></td>
                           <td>{{ object.get_school_progress_display }}</td>
                         </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Разряд:</span></td>
+                          <td>{{ object.rank }}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <a href="{% url 'registry:sportsman-update' object.pk %}" class="btn btn-primary">Редактировать</a>
@@ -128,7 +132,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Углубленное обследование</h4>
                     <p class="text-success">Имеется углубленное обследование</p>
-                    <a href="{% url 'registry:primary-create' object.pk %}" class="btn btn-primary">Добавить обследование</a>
+                    <a href="{% url 'registry:umo-create' object.pk %}" class="btn btn-primary">Добавить обследование</a>
                   </div>
                 </div>
                 {% else %}
@@ -136,7 +140,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Углубленное обследование</h4>
                     <p class="text-danger">Углубленное обследование не пройдено</p>
-                    <a href="" class="btn btn-primary">Пройти обследование</a>
+                    <a href="{% url 'registry:umo-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
                   </div>
                 </div>
               {% endif %}

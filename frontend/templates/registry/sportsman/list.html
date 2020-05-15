@@ -4,12 +4,15 @@
 
 {% block content %}
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row justify-content-center">
+    <div class="col-md-11">
       <div class="card">
         <div class="card-header card-header-primary">
-          <h4 class="card-title ">{{object_list|first|verbose_name_plural}}</h4>
-          {% comment %} <p class="card-category"> Here is a subtitle for this table</p> {% endcomment %}
+        <h4 class="card-title">
+          <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+            <i class="material-icons">add</i>
+          </a>
+          {{object_list|first|verbose_name_plural}}</h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -44,23 +47,19 @@
                       {{item.patronymic}}
                     </td>
                     <td class="td-actions text-right">
-                      <a href="{% url 'registry:sportsman-detail' item.pk %}">
-                        <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
-                          <i class="material-icons">person</i>
-                        </button>
+                      <a href="{% url 'registry:sportsman-detail' item.pk %}" title="Просмотреть спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                        <i class="material-icons">person</i>
+                      </a>
 
-                        <a href="{% url 'registry:sportsman-update' item.pk %}">
-                          <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                            <i class="material-icons">edit</i>
-                        </button>
-                        </a>
+                      <a href="{% url 'registry:sportsman-update' item.pk %}" title="Редактировать спортсмена" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                        <i class="material-icons">edit</i>
+                      </a>
 
-                        <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                          <i class="material-icons">close</i>
-                        </button>
+                      <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
+                        <i class="material-icons">close</i>
+                      </a>
+
                     </td>
-                    </a>
-
                   </tr>
                   </a>
                 {% empty %}

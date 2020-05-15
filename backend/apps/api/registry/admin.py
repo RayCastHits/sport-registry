@@ -33,6 +33,13 @@ class SportTypeAdmin(admin.ModelAdmin):
 admin.site.register(models.SportType, SportTypeAdmin)
 
 
+class RankAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+
+admin.site.register(models.Rank, RankAdmin)
+
+
 class PrimaryAdmin(admin.ModelAdmin):
     list_display = [
         "sportsman",

@@ -4,12 +4,12 @@
 {% block content %}
 <div class="content">
   <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
+    <div class="row">
+      <div class="col">
         <div class="card">
-          <div class="card-header card-header-success">
-            <h4 class="card-title">Редактирование</h4>
-            <p class="card-category">Обновить информацию о спортсмене</p>
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Создание</h4>
+            <p class="card-category">Создание профиля спортсмена</p>
           </div>
           <div class="card-body">
             <form method="POST">
@@ -44,7 +44,7 @@
                   <div class="col mt-4">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label">{{form.gender.label}}</label>
-                      {% render_field form.gender class+="form-control" id+="exampleFormControlSelect1" %}
+                      {% render_field form.gender class+="form-control" %}
                     </div>
                   </div>
                 </div>
@@ -98,7 +98,7 @@
                     </div>
                   </div>
                 </div>
-              <button type="submit" class="btn btn-success pull-right">Обновить профиль</button>
+              <button type="submit" class="btn btn-success pull-right">Создать профиль</button>
               <div class="clearfix"></div>
             </form>
           </div>

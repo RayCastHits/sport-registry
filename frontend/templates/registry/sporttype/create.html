@@ -5,12 +5,12 @@
 {% block content %}
 <div class="content">
   <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
+    <div class="row">
+      <div class="col">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title">Редактирование</h4>
-            <p class="card-category">Обновить информацию о виде спорта</p>
+            <h4 class="card-title">Создание</h4>
+            <p class="card-category">Создание вида спорта</p>
           </div>
           <div class="card-body">
             <form method="POST">
@@ -21,15 +21,16 @@
                       <label class="bmd-label">{{form.name.label}}</label>
                       {% render_field form.name class+="form-control" %}
                     </div>
-                    <button type="submit" class="btn btn-success pull-right">Сохранить</button>
                   </div>
-              </form>
-            </div>
+              <button type="submit" class="btn btn-success pull-right btn-sm">Сохранить</button>
+              <div class="clearfix"></div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock content %}
 
 {% block footer %}

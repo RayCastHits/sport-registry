@@ -20,6 +20,23 @@ urlpatterns = [
         views.SportsmanUpdate.as_view(),
         name="sportsman-update",
     ),
+    path(
+        "sportsman/create/",
+        views.SportsmanCreate.as_view(),
+        name="sportsman-create",
+    ),
+
+    path(
+        "sportsman/<int:pk>/primary/create/",
+        views.PrimaryCreate.as_view(),
+        name="primary-create",
+    ),
+    path(
+        "sportsman/<int:pk>/umo/create/",
+        views.UMOCreate.as_view(),
+        name="umo-create",
+    ),
+
     path("sporttype/", views.SportTypeList.as_view(), name="sporttype-list"),
     path(
         "sporttype/<int:pk>/update/",
@@ -27,8 +44,8 @@ urlpatterns = [
         name="sporttype-update",
     ),
     path(
-        "sportsman/<int:pk>/primary/create/",
-        views.PrimaryCreate.as_view(),
-        name="primary-create",
+        "sporttype/create/",
+        views.SportTypeCreate.as_view(),
+        name="sporttype-create",
     ),
 ]

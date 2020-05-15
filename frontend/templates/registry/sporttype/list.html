@@ -3,13 +3,16 @@
 
 
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
+<div class="container-fluid center">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-header card-header-primary">
-          <h4 class="card-title ">{{object_list|first|verbose_name_plural}}</h4>
-          {% comment %} <p class="card-category"> Here is a subtitle for this table</p> {% endcomment %}
+          <h4 class="card-title ">
+            <a href="{% url 'registry:sporttype-create' %}" title="Добавить вид спорта" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+              <i class="material-icons">add</i>
+            </a>
+          {{object_list|first|verbose_name_plural}}</h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -24,23 +27,20 @@
               </thead>
               <tbody>
                 {% for item in object_list %}
-                <a href="#">
                   <tr>
                     <td>
                       {{item.name}}
                     </td>
                     <td  class="td-actions text-right">
-                      <a href="{% url 'registry:sporttype-update' item.pk %}">
-                        <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        </a>
-                        <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                          <i class="material-icons">close</i>
-                        </button>
+                      <a href="{% url 'registry:sporttype-update' item.pk %}" title="Редактировать вид спорта" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                      <i class="material-icons">edit</i>
+                      </a>
+
+                      <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить вид спорта" role="button" aria-disabled="true">
+                      <i class="material-icons">close</i>
+                      </a>
                     </td>
                   </tr>
-                  </a>
                 {% empty %}
                   <h1>Пусто</h1>
                 {% endfor %}

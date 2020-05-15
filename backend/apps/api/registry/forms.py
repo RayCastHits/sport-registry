@@ -37,3 +37,9 @@ class PrimaryForm(ModelForm):
     class Meta:
         model = models.Primary
         exclude = ["sportsman"]
+
+
+class UMOForm(ModelForm):
+    class Meta:
+        model = models.UMO
+        exclude = ["sportsman"]
