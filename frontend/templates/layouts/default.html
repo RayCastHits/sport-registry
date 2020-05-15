@@ -7,9 +7,9 @@
 {% endblock head %}
 
 {% block body %}
-  <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+  <div class="sidebar" data-color="purple" data-background-color="white" data-image="">
     <div class="logo">
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <a href="" class="simple-text logo-normal">
         ИНЭКС СОО
       </a>
     </div>
@@ -21,7 +21,7 @@
   </div>
   <div class="main-panel">
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-    {% include "components/navbar.html" %}
+      {% include "components/navbar.html" %}
     </nav>
     <div class="content">
       {% block content %}

@@ -13,7 +13,7 @@ class LoginView(FormView):
 
     form_class = AuthenticationForm
     template_name = "auth/login.html"
-    success_url = "/registry/"
+    success_url = "/registry/sportsman"
 
     def form_valid(self, form):
         user = form.get_user()

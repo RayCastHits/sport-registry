@@ -18,12 +18,8 @@ class Survey(models.Model):
         null=True,
         verbose_name="Дата обследования",
     )
-    stage = models.CharField(
-        max_length=15,
-        choices=STAGE,
-        blank=True,
-        null=True,
-        verbose_name="Этап",
+    stage = models.IntegerField(
+        choices=STAGE, blank=True, null=True, verbose_name="Этап",
     )
     sportsman = models.ForeignKey(
         Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен"
@@ -248,12 +244,8 @@ class Primary(Survey):
         null=True,
         verbose_name="Вес отца",
     )
-    type_body_father = models.CharField(
-        max_length=10,
-        choices=BODY_TYPE,
-        blank=True,
-        null=True,
-        verbose_name="Тип тела отца",
+    type_body_father = models.IntegerField(
+        choices=BODY_TYPE, blank=True, null=True, verbose_name="Тип тела отца",
     )
     height_mother = models.DecimalField(
         max_digits=4,
@@ -269,26 +261,20 @@ class Primary(Survey):
         null=True,
         verbose_name="Вес матери",
     )
-    type_body_mother = models.CharField(
-        max_length=10,
+    type_body_mother = models.IntegerField(
         choices=BODY_TYPE,
         blank=True,
         null=True,
         verbose_name="Тип тела матери",
     )
-    front_type = models.CharField(
-        max_length=15,
+    front_type = models.IntegerField(
         choices=CHEST_SHAPE,
         blank=True,
         null=True,
         verbose_name="Форма грудной клетки",
     )
-    back_type = models.CharField(
-        max_length=20,
-        choices=BACK_SHAPE,
-        blank=True,
-        null=True,
-        verbose_name="Форма спины",
+    back_type = models.IntegerField(
+        choices=BACK_SHAPE, blank=True, null=True, verbose_name="Форма спины",
     )
     past_diseases = models.CharField(
         max_length=250,
@@ -310,12 +296,8 @@ class Primary(Survey):
         null=True,
         verbose_name="Вес отца",
     )  #
-    body_type_father = models.CharField(
-        max_length=10,
-        choices=BODY_TYPE,
-        blank=True,
-        null=True,
-        verbose_name="Тип тела отца",
+    body_type_father = models.IntegerField(
+        choices=BODY_TYPE, blank=True, null=True, verbose_name="Тип тела отца",
     )  #
     height_mother = models.DecimalField(
         max_digits=4,
@@ -331,26 +313,20 @@ class Primary(Survey):
         null=True,
         verbose_name="Вес матери",
     )  #
-    body_type_mother = models.CharField(
-        max_length=10,
+    body_type_mother = models.IntegerField(
         choices=BODY_TYPE,
         blank=True,
         null=True,
         verbose_name="Тип тела матери",
     )  #
-    chest_shape = models.CharField(
-        max_length=15,
+    chest_shape = models.IntegerField(
         choices=CHEST_SHAPE,
         blank=True,
         null=True,
         verbose_name="Форма грудной клетки",
     )  #
-    back_shape = models.CharField(
-        max_length=20,
-        choices=BACK_SHAPE,
-        blank=True,
-        null=True,
-        verbose_name="Форма спины",
+    back_shape = models.IntegerField(
+        choices=BACK_SHAPE, blank=True, null=True, verbose_name="Форма спины",
     )  #
     speed = models.PositiveIntegerField(
         blank=True, null=True, verbose_name="Быстрота"

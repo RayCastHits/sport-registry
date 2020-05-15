@@ -31,3 +31,9 @@ SportsmanFormSet = inlineformset_factory(
     max_num=2,
     fields="__all__",
 )
+
+
+class PrimaryForm(ModelForm):
+    class Meta:
+        model = models.Primary
+        exclude = ["sportsman"]

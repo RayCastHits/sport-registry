@@ -17,10 +17,35 @@ class ParentInline(admin.TabularInline):
 
 
 class SportsmanAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+    list_display = ["name", "surname", "patronymic", "gender"]
     inlines = [
         ParentInline,
     ]
 
 
 admin.site.register(models.Sportsman, SportsmanAdmin)
+
+
+class SportTypeAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+
+admin.site.register(models.SportType, SportTypeAdmin)
+
+
+class PrimaryAdmin(admin.ModelAdmin):
+    list_display = [
+        "sportsman",
+    ]
+
+
+admin.site.register(models.Primary, PrimaryAdmin)
+
+
+class UMOAdmin(admin.ModelAdmin):
+    list_display = [
+        "sportsman",
+    ]
+
+
+admin.site.register(models.UMO, UMOAdmin)

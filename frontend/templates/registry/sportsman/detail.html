@@ -1,92 +1,146 @@
 {% extends settings.TEMPLATE_LAYOUT %}
 {% load i18n static utils %}
 
-
 {% block content %}
-<div class="content">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title">{{ object }}</h4>
-            <p class="card-category"><a href="{% url 'registry:sportsman-update' object.pk %}">Редактировать</a></p>
-          </div>
-          <div class="card-body">
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">{{ object }}</h4>
+          <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                  <ul class="nav nav-tabs" data-tabs="tabs">
+                      <li class="nav-item">
+                          <a class="nav-link active" href="#info" data-toggle="tab">
+                            <i class="material-icons">description</i>
+                          Информация
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#parent" data-toggle="tab">
+                            <i class="material-icons">supervisor_account</i>
+                            Представители
+                            </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#questinary" data-toggle="tab">
+                          <i class="material-icons">local_hospital</i>
+                          Обследования
+                          </a>
+                      </li>
+                      <li class="nav-item">
 
-            <p class="mb-3">
-              <span class="font-weight-bold">Дата рождения:</span> {{ object.date_of_birth }}
-            </p>
-            <p class="mb-3">
-              <span class="font-weight-bold">Пол:</span> {{ object.get_gender_display }}
-            </p>
-            <p class="mb-3">
-              <span class="font-weight-bold">Контактный номер:</span> {{ object.phone_number }}
-            </p>
-            <p class="mb-3">
-              <span class="font-weight-bold">Место жительства:</span> {{ object.location }}
-            </p>
-            <p class="mb-3">
-              <span class="font-weight-bold">Умение плавать:</span> {{ object.get_is_swimming_display }}
-            </p>
-            <p class="mb-3">
-              <span class="font-weight-bold">Спортивное учреждение:</span> {{ object.sports_facility }}
-            </p>
-            <p class="mb-3">
-              <span class="font-weight-bold">Успеваемость в школе:</span> {{ object.get_school_progress_display }}
-            </p>
-
-            {% comment %} <div class="card-header card-header-primary mt-4">
-              <h4 class="card-title">Иванов Иван Иванович</h4>
-              <p class="card-category"><a href="/registry/sportsman/2/update/">Редактировать</a></p>
-            </div>
-            {% if parents %}
-              <h3>Представители:</h3>
-              {% for parent in parents %}
-                <p class="mb-3">
-                  {{ parent }}
-                  <br>
-                  <span class="font-weight-bold">Контактный номер:</span>
-                  {{ parent.telephone }}
-                  <br>
-                  <span class="font-weight-bold">Электронная почта:</span>
-                  {{ parent.email }}
-                </p>
-              {% endfor %}
-            {% else %}
-              <h3>Нет прдставителей</h3>
-            {% endif %} {% endcomment %}
-
+                      </li>
+                  </ul>
+              </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="content">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header card-header-info">
-            <h4 class="card-title">Информация о спортсмене</h4>
-            <p class="card-category">Представители</p>
-          </div>
-          <div class="card-body">
-            {% if parents %}
-              {% for parent in parents %}
-                <div class="my-4">
-                  <h5>{{ parent }}</h5>
-                  <span class="font-weight-bold">Контактный номер:</span>
-                  {{ parent.telephone }}
-                  <br/>
-                  <span class="font-weight-bold">Электронная почта:</span>
-                  {{ parent.email }}
+        <div class="card-body">
+          <div class="card-plain">
+            <div class="tab-content">
+              <div class="tab-pane active" id="info">
+                <h3>Информация</h3>
+                {% comment %} <p class="mb-3">
+                {% if object.date_of_birth == None %}
+                  <p>Отсутствует</p>
+                  {% else %}
+                  <p>
+                    </p>
+                {% endif %} {% endcomment %}
+
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td><span class="font-weight-bold">Дата рождения:</span></td>
+                            <td>{{ object.date_of_birth }}</td>
+                        </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Пол:</span></td>
+                          <td>{{ object.get_gender_display }}</td>
+                        </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Контактный номер:</span></td>
+                          <td>{{ object.phone_number }}</td>
+                        </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Место жительства:</span></td>
+                          <td>{{ object.location }}</td>
+                        </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Умение плавать:</span></td>
+                          <td>{{ object.get_is_swimming_display }}</td>
+                        </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Вид спорта:</span></td>
+                          <td>{{ object.sport_type }}</td>
+                        </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Спортивное учреждение:</span></td>
+                          <td>{{ object.sports_facility }}</td>
+                        </tr>
+                        <tr>
+                          <td><span class="font-weight-bold">Успеваемость в школе:</span></td>
+                          <td>{{ object.get_school_progress_display }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="{% url 'registry:sportsman-update' object.pk %}" class="btn btn-primary">Редактировать</a>
+              </div>
+            <div class="tab-pane" id="parent">
+              {% if parents %}
+                <h3>Представители</h3>
+                {% for parent in parents %}
+                  <div class="my-4">
+                    <h5>{{ parent }}</h5>
+                    <span class="font-weight-bold">Контактный номер:</span>
+                    {{ parent.telephone }}
+                    <br/>
+                    <span class="font-weight-bold">Электронная почта:</span>
+                    {{ parent.email }}
+                  </div>
+                {% endfor %}
+              {% else %}
+              <h3>Нет представителей</h3>
+              {% endif %}
+            </div>
+            <div class="tab-pane" id="questinary">
+              <h3>Обследования</h3>
+                {% if primarys %}
+                <div class="card card-nav-tabs">
+                  <div class="card-body">
+                    <h4 class="card-title">Первичное обследование</h4>
+                    <p class="text-success">Первичное обследование успешно пройдено</p>
+                  </div>
                 </div>
-              {% endfor %}
-            {% else %}
-              <h3>Нет прдставителей</h3>
-            {% endif %}
+                {% else %}
+                <div class="card card-nav-tabs">
+                  <div class="card-body">
+                    <h4 class="card-title">Первичное обследование</h4>
+                    <p class="text-danger">Первичное обследование не пройдено</p>
+                    <a href="{% url 'registry:primary-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if UMO %}
+                <div class="card card-nav-tabs">
+                  <div class="card-body">
+                    <h4 class="card-title">Углубленное обследование</h4>
+                    <p class="text-success">Имеется углубленное обследование</p>
+                    <a href="{% url 'registry:primary-create' object.pk %}" class="btn btn-primary">Добавить обследование</a>
+                  </div>
+                </div>
+                {% else %}
+              <div class="card card-nav-tabs">
+                  <div class="card-body">
+                    <h4 class="card-title">Углубленное обследование</h4>
+                    <p class="text-danger">Углубленное обследование не пройдено</p>
+                    <a href="" class="btn btn-primary">Пройти обследование</a>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>

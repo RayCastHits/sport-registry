@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{% block title %}{% trans "Site name" %}{% endblock title %}</title>
+  {% comment %} <title>{% block title %}{% trans "Site name" %}{% endblock title %}</title> {% endcomment %}
   <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
   {% if request|is_hijacked %}
     <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
@@ -30,9 +30,12 @@
 
 
   <!--   Core JS Files   -->
-  <script src="{% static 'dashboard/assets/js/core/jquery.min.js' %}"></script>
+  {% comment %} <script src="{% static 'dashboard/assets/js/core/jquery.min.js' %}"></script> {% endcomment %}
   <script src="{% static 'dashboard/assets/js/core/popper.min.js' %}"></script>
   <script src="{% static 'dashboard/assets/js/core/bootstrap-material-design.min.js' %}"></script>
+
+
+
   <script src="{% static 'dashboard/assets/js/plugins/perfect-scrollbar.jquery.min.js' %}"></script>
   <!-- Plugin for the momentJs  -->
   <script src="{% static 'dashboard/assets/js/plugins/moment.min.js' %}"></script>

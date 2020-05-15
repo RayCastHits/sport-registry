@@ -13,18 +13,11 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table">
               <thead class=" text-primary">
                 <tr>
-                  <th class="text-center"></th>
                   <th>
                   {% verbose_name_field object_list|first "name" %}
-                  </th>
-                  <th>
-                    {% verbose_name_field object_list|first "surname" %}
-                  </th>
-                  <th>
-                    {% verbose_name_field object_list|first "patronymic" %}
                   </th>
                   <th class="text-right">Действия</th>
                 </tr>
@@ -33,34 +26,19 @@
                 {% for item in object_list %}
                 <a href="#">
                   <tr>
-                    <td class="text-center">{{ forloop.counter  }}</td>
-                  <td>
+                    <td>
                       {{item.name}}
                     </td>
-                    <td>
-                      {{item.surname}}
-                    </td>
-                    <td>
-                      {{item.patronymic}}
-                    </td>
-                    <td class="td-actions text-right">
-                      <a href="{% url 'registry:sportsman-detail' item.pk %}">
-                        <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
-                          <i class="material-icons">person</i>
-                        </button>
-
-                        <a href="{% url 'registry:sportsman-update' item.pk %}">
-                          <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                            <i class="material-icons">edit</i>
+                    <td  class="td-actions text-right">
+                      <a href="{% url 'registry:sporttype-update' item.pk %}">
+                        <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
+                          <i class="material-icons">edit</i>
                         </button>
                         </a>
-
                         <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
                           <i class="material-icons">close</i>
                         </button>
                     </td>
-                    </a>
-
                   </tr>
                   </a>
                 {% empty %}

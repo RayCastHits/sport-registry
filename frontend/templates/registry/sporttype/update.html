@@ -1,0 +1,46 @@
+{% extends settings.TEMPLATE_LAYOUT %}
+{% load i18n static utils widget_tweaks  %}
+
+
+{% block content %}
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Редактирование</h4>
+            <p class="card-category">Обновить информацию о виде спорта</p>
+          </div>
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+                <div class="row">
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.name.label}}</label>
+                      {% render_field form.name class+="form-control" %}
+                    </div>
+                  </div>
+              <button type="submit" class="btn btn-success pull-right btn-sm">Сохранить</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}
+
+{% block scripts %}
+  <script>
+    $('tr[data-href]').on("click", function() {
+      document.location = $(this).data('href');
+    });
+  </script>
+{% endblock scripts %}
