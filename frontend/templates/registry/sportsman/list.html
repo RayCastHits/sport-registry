@@ -16,7 +16,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-hover">
+            {% comment %} <table class="table table-hover">
               <thead class=" text-primary">
                 <tr>
                   <th class="text-center"></th>
@@ -66,6 +66,43 @@
                   <h1>Пусто</h1>
                 {% endfor %}
               </tbody>
+            </table> {% endcomment %}
+            <table id="fresh-table">
+              <thead>
+                <th class="text-center">#</th>
+                <th data-field="name">{% verbose_name_field object_list|first "name" %}</th>
+                <th data-field="surname">{% verbose_name_field object_list|first "surname" %}</th>
+                <th data-field="patronymic">{% verbose_name_field object_list|first "patronymic" %}</th>
+                <th class="text-right">Действия</th>
+              </thead>
+              <tbody>
+                {% for item in object_list %}
+                  <tr>
+                    <td class="text-center">{{ forloop.counter }}</td>
+                  <td>
+                    {{item.name}}
+                  </td>
+                  <td>
+                    {{item.surname}}
+                  </td>
+                  <td>
+                    {{item.patronymic}}
+                  </td>
+                  <td class="td-actions text-right">
+                    <a href="{% url 'registry:sportsman-detail' item.pk %}" title="Просмотреть спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                      <i class="material-icons">person</i>
+                    </a>
+
+                    <a href="{% url 'registry:sportsman-update' item.pk %}" title="Редактировать спортсмена" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                      <i class="material-icons">edit</i>
+                    </a>
+
+                    <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
+                      <i class="material-icons">close</i>
+                    </a>
+                  </td>
+                {% endfor %}
+              </tbody>
             </table>
           </div>
         </div>
@@ -76,6 +113,7 @@
 {% endblock content %}
 
 {% block footer %}
+
 {% endblock footer %}
 
 {% block scripts %}

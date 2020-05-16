@@ -9,31 +9,28 @@
         <div class="card-header card-header-primary">
           <h4 class="card-title">{{ object }}</h4>
           <div class="nav-tabs-navigation">
-              <div class="nav-tabs-wrapper">
-                  <ul class="nav nav-tabs" data-tabs="tabs">
-                      <li class="nav-item">
-                          <a class="nav-link active" href="#info" data-toggle="tab">
-                            <i class="material-icons">description</i>
-                          Информация
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#parent" data-toggle="tab">
-                            <i class="material-icons">supervisor_account</i>
-                            Представители
-                            </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#questinary" data-toggle="tab">
-                          <i class="material-icons">local_hospital</i>
-                          Обследования
-                          </a>
-                      </li>
-                      <li class="nav-item">
-
-                      </li>
-                  </ul>
-              </div>
+            <div class="nav-tabs-wrapper">
+              <ul class="nav nav-tabs" data-tabs="tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#info" data-toggle="tab">
+                    <i class="material-icons">description</i>
+                  Информация
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#parent" data-toggle="tab">
+                    <i class="material-icons">supervisor_account</i>
+                    Представители
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#questinary" data-toggle="tab">
+                  <i class="material-icons">local_hospital</i>
+                  Обследования
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="card-body">
@@ -48,46 +45,45 @@
                   <p>
                     </p>
                 {% endif %} {% endcomment %}
-
                 <table class="table table-hover">
-                    <tbody>
-                        <tr>
-                            <td><span class="font-weight-bold">Дата рождения:</span></td>
-                            <td>{{ object.date_of_birth }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Пол:</span></td>
-                          <td>{{ object.get_gender_display }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Контактный номер:</span></td>
-                          <td>{{ object.phone_number }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Место жительства:</span></td>
-                          <td>{{ object.location }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Умение плавать:</span></td>
-                          <td>{{ object.get_is_swimming_display }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Вид спорта:</span></td>
-                          <td>{{ object.sport_type }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Спортивное учреждение:</span></td>
-                          <td>{{ object.sports_facility }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Успеваемость в школе:</span></td>
-                          <td>{{ object.get_school_progress_display }}</td>
-                        </tr>
-                        <tr>
-                          <td><span class="font-weight-bold">Разряд:</span></td>
-                          <td>{{ object.rank }}</td>
-                        </tr>
-                    </tbody>
+                  <tbody>
+                    <tr>
+                        <td><span class="font-weight-bold">Дата рождения:</span></td>
+                        <td>{{ object.date_of_birth }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Пол:</span></td>
+                      <td>{{ object.get_gender_display }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Контактный номер:</span></td>
+                      <td>{{ object.phone_number }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Место жительства:</span></td>
+                      <td>{{ object.location }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Умение плавать:</span></td>
+                      <td>{{ object.get_is_swimming_display }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Вид спорта:</span></td>
+                      <td>{{ object.sport_type }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Спортивное учреждение:</span></td>
+                      <td>{{ object.sports_facility }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Успеваемость в школе:</span></td>
+                      <td>{{ object.get_school_progress_display }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="font-weight-bold">Разряд:</span></td>
+                      <td>{{ object.rank }}</td>
+                    </tr>
+                  </tbody>
                 </table>
                 <a href="{% url 'registry:sportsman-update' object.pk %}" class="btn btn-primary">Редактировать</a>
               </div>
@@ -110,23 +106,22 @@
             </div>
             <div class="tab-pane" id="questinary">
               <h3>Обследования</h3>
-                {% if primarys %}
+              {% if primarys %}
                 <div class="card card-nav-tabs">
                   <div class="card-body">
                     <h4 class="card-title">Первичное обследование</h4>
                     <p class="text-success">Первичное обследование успешно пройдено</p>
                   </div>
                 </div>
-                {% else %}
-                <div class="card card-nav-tabs">
-                  <div class="card-body">
-                    <h4 class="card-title">Первичное обследование</h4>
-                    <p class="text-danger">Первичное обследование не пройдено</p>
-                    <a href="{% url 'registry:primary-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
-                  </div>
+              {% else %}
+              <div class="card card-nav-tabs">
+                <div class="card-body">
+                  <h4 class="card-title">Первичное обследование</h4>
+                  <p class="text-danger">Первичное обследование не пройдено</p>
+                  <a href="{% url 'registry:primary-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
                 </div>
+              </div>
               {% endif %}
-
               {% if UMO %}
                 <div class="card card-nav-tabs">
                   <div class="card-body">
@@ -135,14 +130,14 @@
                     <a href="{% url 'registry:umo-create' object.pk %}" class="btn btn-primary">Добавить обследование</a>
                   </div>
                 </div>
-                {% else %}
+              {% else %}
               <div class="card card-nav-tabs">
-                  <div class="card-body">
-                    <h4 class="card-title">Углубленное обследование</h4>
-                    <p class="text-danger">Углубленное обследование не пройдено</p>
-                    <a href="{% url 'registry:umo-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
-                  </div>
+                <div class="card-body">
+                  <h4 class="card-title">Углубленное обследование</h4>
+                  <p class="text-danger">Углубленное обследование не пройдено</p>
+                  <a href="{% url 'registry:umo-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
                 </div>
+              </div>
               {% endif %}
             </div>
           </div>
@@ -154,8 +149,7 @@
 {% endblock content %}
 
 {% block footer %}
-<div class="container-fluid">
-</div>
+
 {% endblock footer %}
 
 {% block scripts %}
