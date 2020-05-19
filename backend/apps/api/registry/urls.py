@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 
 app_name = "registry"
@@ -25,18 +25,26 @@ urlpatterns = [
         views.SportsmanCreate.as_view(),
         name="sportsman-create",
     ),
-
     path(
         "sportsman/<int:pk>/primary/create/",
         views.PrimaryCreate.as_view(),
         name="primary-create",
     ),
     path(
-        "sportsman/<int:pk>/umo/create/",
-        views.UMOCreate.as_view(),
-        name="umo-create",
+        "sportsman/<int:pk>/primary/update/",
+        views.PrimaryUpdate.as_view(),
+        name="primary-update",
     ),
-
+    path(
+        "sportsman/<int:pk>/primary/detail/",
+        views.PrimaryDetail.as_view(),
+        name="primary-detail",
+    ),
+    path(
+        "sportsman/<int:pk>/medical/create/",
+        views.MedicalCreate.as_view(),
+        name="medical-create",
+    ),
     path("sporttype/", views.SportTypeList.as_view(), name="sporttype-list"),
     path(
         "sporttype/<int:pk>/update/",
@@ -48,4 +56,10 @@ urlpatterns = [
         views.SportTypeCreate.as_view(),
         name="sporttype-create",
     ),
+    # path("rating/", include([
+    #     path("primary/",),
+    #     path("primary/",),
+    #     path("primary/",),
+    #     path("primary/",),
+    # ])),
 ]

@@ -1,0 +1,393 @@
+{% extends settings.TEMPLATE_LAYOUT %}
+{% load i18n static utils widget_tweaks  %}
+
+{% block content %}
+  {% comment %} <div class="card-body">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="btn btn-success pull-right">Обновить профиль</button>
+      <a class="btn btn-second" href="../">Назад</a>
+    </form>
+  </div> {% endcomment %}
+
+  <div class="content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title">Добавление первичного обследования</h4>
+            <p class="card-category">Первичное медицинское обследование является профилактическим обследованием, охватывающим все важные функции организма и его органов. В первую очередь врач уделяет достаточное количество времени тому, чтобы тщательно изучить состояние здоровья. При этом учитывается как состояние организмав настоящий момент, так и семейный анамнез, а также профессиональное и социальное окружение.</p>
+          </div>
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+                <div class="row">
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.date.label}}</label>
+                      {% render_field form.date class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.stage.label}}</label>
+                      {% render_field form.stage class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.weight.label}}</label>
+                      {% render_field form.weight class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.length.label}}</label>
+                      {% render_field form.length class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.spit_leg_length.label}}</label>
+                      {% render_field form.spit_leg_length class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.foot_length.label}}</label>
+                      {% render_field form.foot_length class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.torso_length_7.label}}</label>
+                      {% render_field form.torso_length_7 class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.arm_span.label}}</label>
+                      {% render_field form.arm_span class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.chest_girth_inspiration.label}}</label>
+                      {% render_field form.chest_girth_inspiration class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.exhaling_chest.label}}</label>
+                      {% render_field form.exhaling_chest class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.excursion_difference.label}}</label>
+                      {% render_field form.excursion_difference class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.spirometry.label}}</label>
+                      {% render_field form.spirometry class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.breath_hold_stange.label}}</label>
+                      {% render_field form.breath_hold_stange class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.dynamometry.label}}</label>
+                      {% render_field form.dynamometry class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.dynamometry_right.label}}</label>
+                      {% render_field form.dynamometry_right class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.dynamometry_left.label}}</label>
+                      {% render_field form.dynamometry_left class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.fat_mass.label}}</label>
+                      {% render_field form.fat_mass class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.muscle_mass.label}}</label>
+                      {% render_field form.muscle_mass class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.open_eyes.label}}</label>
+                      {% render_field form.open_eyes class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.close_eyes.label}}</label>
+                      {% render_field form.close_eyes class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.target.label}}</label>
+                      {% render_field form.target class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.pwc_kg.label}}</label>
+                      {% render_field form.pwc_kg class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.pwc.label}}</label>
+                      {% render_field form.pwc class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.pressure_up.label}}</label>
+                      {% render_field form.pressure_up class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.pressure_down.label}}</label>
+                      {% render_field form.pressure_down class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.oxygen.label}}</label>
+                      {% render_field form.oxygen class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.diseases.label}}</label>
+                      {% render_field form.diseases class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.type_body_father.label}}</label>
+                      {% render_field form.type_body_father class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.type_body_mother.label}}</label>
+                      {% render_field form.type_body_mother class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.front_type.label}}</label>
+                      {% render_field form.front_type class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.back_type.label}}</label>
+                      {% render_field form.back_type class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.past_diseases.label}}</label>
+                      {% render_field form.past_diseases class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.height_father.label}}</label>
+                      {% render_field form.height_father class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.weight_father.label}}</label>
+                      {% render_field form.weight_father class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.body_type_father.label}}</label>
+                      {% render_field form.body_type_father class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.height_mother.label}}</label>
+                      {% render_field form.height_mother class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.weight_mother.label}}</label>
+                      {% render_field form.weight_mother class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.body_type_mother.label}}</label>
+                      {% render_field form.body_type_mother class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.chest_shape.label}}</label>
+                      {% render_field form.chest_shape class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.back_shape.label}}</label>
+                      {% render_field form.back_shape class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.speed.label}}</label>
+                      {% render_field form.speed class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.strength.label}}</label>
+                      {% render_field form.strength class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.stamina.label}}</label>
+                      {% render_field form.stamina class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.coordination.label}}</label>
+                      {% render_field form.coordination class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.nervous_system_potential.label}}</label>
+                      {% render_field form.nervous_system_potential class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.run_30.label}}</label>
+                      {% render_field form.run_30 class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.jump_place.label}}</label>
+                      {% render_field form.jump_place class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.pull_ups.label}}</label>
+                      {% render_field form.pull_ups class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.concept.label}}</label>
+                      {% render_field form.concept class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.run_1500.label}}</label>
+                      {% render_field form.run_1500 class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.concept_500.label}}</label>
+                      {% render_field form.concept_500 class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.motivation.label}}</label>
+                      {% render_field form.motivation class+="form-control" %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label">{{form.willed_qualities.label}}</label>
+                      {% render_field form.willed_qualities class+="form-control" %}
+                    </div>
+                  </div>
+                </div>
+              <button type="submit" class="btn btn-success pull-right">Сохранить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}
+
+{% block scripts %}
+  <script>
+    $('tr[data-href]').on("click", function() {
+      document.location = $(this).data('href');
+    });
+  </script>
+{% endblock scripts %}

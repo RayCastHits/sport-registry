@@ -404,7 +404,7 @@
 #         abstract = True
 
 
-# class UMO(Survey):
+# class Medical(Survey):
 #     """
 #     Углубленное медицинское обследование
 #     """

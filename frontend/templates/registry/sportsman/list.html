@@ -7,41 +7,89 @@
   <div class="row justify-content-center">
     <div class="col-md-11">
       <div class="card">
-        <div class="card-header card-header-primary">
-        <h4 class="card-title">
-          <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
-            <i class="material-icons">add</i>
-          </a>
-          {{object_list|first|verbose_name_plural}}</h4>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            {% comment %} <table class="table table-hover">
-              <thead class=" text-primary">
-                <tr>
-                  <th class="text-center"></th>
-                  <th>
-                  {% verbose_name_field object_list|first "name" %}
-                  </th>
-                  <th>
-                    {% verbose_name_field object_list|first "surname" %}
-                  </th>
-                  <th>
-                    {% verbose_name_field object_list|first "patronymic" %}
-                  </th>
-                  <th class="text-right">Действия</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in object_list %}
-                <a href="#">
+        {% if object_list %}
+          <div class="card-header card-header-primary">
+            <div class="card-icon">
+              {{ object_list.count }}
+            </div>
+            <h4 class="card-title">
+              <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                <i class="material-icons">add</i>
+              </a>
+              {{object_list|first|verbose_name_plural}}
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              {% comment %} <table class="table table-hover">
+                <thead class=" text-primary">
                   <tr>
-                    <td class="text-center">{{ forloop.counter  }}</td>
-                  <td>
-                      {{item.name}}
-                    </td>
+                    <th class="text-center"></th>
+                    <th>
+                    {% verbose_name_field object_list|first "name" %}
+                    </th>
+                    <th>
+                      {% verbose_name_field object_list|first "surname" %}
+                    </th>
+                    <th>
+                      {% verbose_name_field object_list|first "patronymic" %}
+                    </th>
+                    <th class="text-right">Действия</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in object_list %}
+                  <a href="#">
+                    <tr>
+                      <td class="text-center">{{ forloop.counter  }}</td>
+                    <td>
+                        {{item.name}}
+                      </td>
+                      <td>
+                        {{item.surname}}
+                      </td>
+                      <td>
+                        {{item.patronymic}}
+                      </td>
+                      <td class="td-actions text-right">
+                        <a href="{% url 'registry:sportsman-detail' item.pk %}" title="Просмотреть спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                          <i class="material-icons">person</i>
+                        </a>
+
+                        <a href="{% url 'registry:sportsman-update' item.pk %}" title="Редактировать спортсмена" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                          <i class="material-icons">edit</i>
+                        </a>
+
+                        <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
+                          <i class="material-icons">close</i>
+                        </a>
+
+                      </td>
+                    </tr>
+                    </a>
+                  {% empty %}
+                    <h1>Пусто</h1>
+                  {% endfor %}
+                </tbody>
+              </table> {% endcomment %}
+              <table id="fresh-table">
+                <thead>
+                  <th class="text-center"></th>
+                  <th data-field="surname">{% verbose_name_field object_list|first "surname" %}</th>
+                  <th data-field="name">{% verbose_name_field object_list|first "name" %}</th>
+                  <th data-field="patronymic">{% verbose_name_field object_list|first "patronymic" %}</th>
+                  <th class="text-right">Действия</th>
+                </thead>
+                <tbody>
+                  {% for item in object_list %}
+                    <tr>
+                      <td class="text-center">{{ forloop.counter }}</td>
+                      {% comment %} <td class="text-center">{{ item.id }}</td> {% endcomment %}
                     <td>
                       {{item.surname}}
+                    </td>
+                    <td>
+                      {{item.name}}
                     </td>
                     <td>
                       {{item.patronymic}}
@@ -58,54 +106,15 @@
                       <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
                         <i class="material-icons">close</i>
                       </a>
-
                     </td>
-                  </tr>
-                  </a>
-                {% empty %}
-                  <h1>Пусто</h1>
-                {% endfor %}
-              </tbody>
-            </table> {% endcomment %}
-            <table id="fresh-table">
-              <thead>
-                <th class="text-center">#</th>
-                <th data-field="name">{% verbose_name_field object_list|first "name" %}</th>
-                <th data-field="surname">{% verbose_name_field object_list|first "surname" %}</th>
-                <th data-field="patronymic">{% verbose_name_field object_list|first "patronymic" %}</th>
-                <th class="text-right">Действия</th>
-              </thead>
-              <tbody>
-                {% for item in object_list %}
-                  <tr>
-                    <td class="text-center">{{ forloop.counter }}</td>
-                  <td>
-                    {{item.name}}
-                  </td>
-                  <td>
-                    {{item.surname}}
-                  </td>
-                  <td>
-                    {{item.patronymic}}
-                  </td>
-                  <td class="td-actions text-right">
-                    <a href="{% url 'registry:sportsman-detail' item.pk %}" title="Просмотреть спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
-                      <i class="material-icons">person</i>
-                    </a>
-
-                    <a href="{% url 'registry:sportsman-update' item.pk %}" title="Редактировать спортсмена" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
-                      <i class="material-icons">edit</i>
-                    </a>
-
-                    <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
-                      <i class="material-icons">close</i>
-                    </a>
-                  </td>
-                {% endfor %}
-              </tbody>
-            </table>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        {% else %}
+         <!-- TODO: сделать блок -->
+        {% endif %}
       </div>
     </div>
   </div>
@@ -117,9 +126,9 @@
 {% endblock footer %}
 
 {% block scripts %}
-  <script>
+  {% comment %} <script>
     $('tr[data-href]').on("click", function() {
       document.location = $(this).data('href');
     });
-  </script>
+  </script> {% endcomment %}
 {% endblock scripts %}

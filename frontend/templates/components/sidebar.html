@@ -1,40 +1,74 @@
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
-    <p>
-      <span class="material-icons">
-      sports_kabaddi
-      </span>
-      Спортсмены
-    </p>
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'registry:sporttype-list' %}">
-    <p>
-      <span class="material-icons">
-      sports_soccer
-      </span>
-      Виды спорта
-    </p>
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
-    <p>
-      <span class="material-icons">
-      emoji_events
-      </span>
-      Рейтинг
-    </p>
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
-    <p>
-      <span class="material-icons">
-      supervisor_account
-      </span>
-      Пользователи
-    </p>
-  </a>
-</li>
+<div class="nav-tabs-navigation">
+  <div class="nav-tabs-wrapper">
+    <ul class="nav nav-pills nav-pills-primary flex-column" data-tabs="tabs">
+      {% if request.path  == "/registry/sportsman/" %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
+          <p>
+            <span class="material-icons">
+            sports_kabaddi
+            </span>
+            Спортсмены
+          </p>
+        </a>
+      </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
+            <p>
+              <span class="material-icons">
+              sports_kabaddi
+              </span>
+              Спортсмены
+            </p>
+          </a>
+        </li>
+      {% endif %}
+
+      {% if request.path  == "/registry/sporttype/" %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'registry:sporttype-list' %}">
+          <p>
+            <span class="material-icons">
+            sports_soccer
+            </span>
+            Виды спорта
+          </p>
+        </a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'registry:sporttype-list' %}">
+          <p>
+            <span class="material-icons">
+            sports_soccer
+            </span>
+            Виды спорта
+          </p>
+        </a>
+      </li>
+      {% endif %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
+          <p>
+            <span class="material-icons">
+            emoji_events
+            </span>
+            Рейтинг
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
+          <p>
+            <span class="material-icons">
+            supervisor_account
+            </span>
+            Пользователи
+          </p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

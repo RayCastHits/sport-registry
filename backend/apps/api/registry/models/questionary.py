@@ -410,7 +410,7 @@ class Primary(Survey):
         verbose_name_plural = "Первичные"
 
 
-class UMO(Survey):
+class Medical(Survey):
     """
     Углубленное медицинское обследование
     """

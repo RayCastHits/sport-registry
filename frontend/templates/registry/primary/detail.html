@@ -1,0 +1,269 @@
+{% extends settings.TEMPLATE_LAYOUT %}
+{% load i18n static utils widget_tweaks  %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title">{{ object.sportsman }}</h4>
+            <p class="card-category">Просмотр первичного обследования</p>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                    <td><span class="font-weight-bold">Дата обследования:</span></td>
+                    <td>{{ object.date }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Этап:</span></td>
+                  <td>{{ object.get_stage_display }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Вес тела (кг):</span></td>
+                  <td>{{ object.weight }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Длина тела (см):</span></td>
+                  <td>{{ object.length }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Длина ног от вертела (см):</span></td>
+                  <td>{{ object.spit_leg_length }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Длина стопы (см):</span></td>
+                  <td>{{ object.foot_length }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Длина туловища от 7-го шейного позвонка(см):</span></td>
+                  <td>{{ object.torso_length_7 }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Размах рук (см):</span></td>
+                  <td>{{ object.arm_span }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Обхват грудной клетки на вдохе(см):</span></td>
+                  <td>{{ object.chest_girth_inspiration }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Обхват грудной клетки на выдохе(см):</span></td>
+                  <td>{{ object.exhaling_chest }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Экскурсия(разница):</span></td>
+                  <td>{{ object.excursion_difference }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Спирометрия(ЖЕЛ)мл:</span></td>
+                  <td>{{ object.spirometry }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Проба с задер.дых.на вдохе(проба Штанге)сек:</span></td>
+                  <td>{{ object.breath_hold_stange }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Становая динамометрия:</span></td>
+                  <td>{{ object.dynamometry }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Динамометрия правой кисти(кг):</span></td>
+                  <td>{{ object.dynamometry_right }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Динамометрия левой кисти(кг):</span></td>
+                  <td>{{ object.dynamometry_left }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">% жировой массы:</span></td>
+                  <td>{{ object.fat_mass }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">% мышечной массы:</span></td>
+                  <td>{{ object.muscle_mass }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Открытые глаза (фон):</span></td>
+                  <td>{{ object.open_eyes }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Закрытые глаза:</span></td>
+                  <td>{{ object.close_eyes }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Мишень:</span></td>
+                  <td>{{ object.target }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">PWC Кг мм:</span></td>
+                  <td>{{ object.pwc_kg }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">PWC ЧСС:</span></td>
+                  <td>{{ object.pwc }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Артериальное давление(верхнее):</span></td>
+                  <td>{{ object.pressure_up }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Артериальное давление(нижнее):</span></td>
+                  <td>{{ object.pressure_down }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Максимальное потребление кислорода:</span></td>
+                  <td>{{ object.oxygen }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Перенесенные заболевания(травмы):</span></td>
+                  <td>{{ object.diseases }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Тип тела отца:</span></td>
+                  <td>{{ object.type_body_father }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Тип тела матери:</span></td>
+                  <td>{{ object.type_body_mother }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Форма грудной клетки:</span></td>
+                  <td>{{ object.front_type }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Форма спины:</span></td>
+                  <td>{{ object.back_type }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Перенесенные заболевания(травмы):</span></td>
+                  <td>{{ object.past_diseases }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Рост отца:</span></td>
+                  <td>{{ object.height_father }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Вес отца:</span></td>
+                  <td>{{ object.weight_father }}</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-weight-bold">Тип тела отца:</span></td>
+                  <td>{{ object.body_type_father }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Рост матери:</span></td>
+                  <td>{{ object.height_mother }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Вес матери:</span></td>
+                  <td>{{ object.weight_mother }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Тип тела матери:</span></td>
+                  <td>{{ object.body_type_mother }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Форма грудной клетки:</span></td>
+                  <td>{{ object.chest_shape }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Форма спины:</span></td>
+                  <td>{{ object.back_shape }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Быстрота:</span></td>
+                  <td>{{ object.speed }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Сила%:</span></td>
+                  <td>{{ object.strength }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Выносливость%:</span></td>
+                  <td>{{ object.stamina }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Координация%:</span></td>
+                  <td>{{ object.coordination }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Потенциал нервной системы:</span></td>
+                  <td>{{ object.nervous_system_potential }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Бег 30м:</span></td>
+                  <td>{{ object.run_30 }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Прыжок в длину с места:</span></td>
+                  <td>{{ object.jump_place }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Подтягивания на перекладине:</span></td>
+                  <td>{{ object.pull_ups }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Концепт(техническая гребля):</span></td>
+                  <td>{{ object.concept }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Бег 1500м:</span></td>
+                  <td>{{ object.run_1500 }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Концепт 500м:</span></td>
+                  <td>{{ object.concept_500 }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Мотивация к тренеровочному процессу:</span></td>
+                  <td>{{ object.motivation }}</td>
+                </tr>
+                <tr>
+                  <td><span class="font-weight-bold">Развитие волевых качеств:</span></td>
+                  <td>{{ object.willed_qualities }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}
+
+{% block scripts %}
+  <script>
+    $('tr[data-href]').on("click", function() {
+      document.location = $(this).data('href');
+    });
+  </script>
+{% endblock scripts %}

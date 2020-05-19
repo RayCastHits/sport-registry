@@ -5,11 +5,16 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .models import Sportsman, Parent, SportType, Primary, UMO
+from ..models import (
+    Sportsman,
+    Parent,
+    SportType,
+    Primary,
+    Medical,
+    SportResult,
+)
 
-from .forms import PrimaryForm, UMOForm
-
-# from . import forms
+from ..forms import PrimaryForm, MedicalForm
 
 
 @method_decorator(login_required, name="dispatch")
@@ -37,8 +42,12 @@ class SportsmanDetail(DetailView):
         context["primarys"] = Primary.objects.filter(
             sportsman_id=self.object.pk
         )
-        context["UMO"] = UMO.objects.filter(sportsman_id=self.object.pk)
-        # TODO: объекты обследований.
+        context["Medical"] = Medical.objects.filter(
+            sportsman_id=self.object.pk
+        )
+        context["sport_results"] = SportResult.objects.filter(
+            sportsman_id=self.object.pk
+        )
         return context
 
 
@@ -132,14 +141,51 @@ class PrimaryCreate(CreateView):
 
 
 @method_decorator(login_required, name="dispatch")
-class UMOCreate(CreateView):
+class PrimaryUpdate(UpdateView):
+    """
+    Форма обновления первичного обследования
+    """
+
+    model = Primary
+    form_class = PrimaryForm
+    template_name = "registry/primary/update.html"
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.sportsman_id = self.kwargs["pk"]
+        obj.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        return reverse_lazy("registry:sportsman-detail", kwargs={"pk": pk})
+
+
+@method_decorator(login_required, name="dispatch")
+class PrimaryDetail(DetailView):
+    """
+    Форма просмотра первичного обследования
+    """
+
+    model = Primary
+    form_class = PrimaryForm
+    fields = "__all__"
+    template_name = "registry/primary/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+@method_decorator(login_required, name="dispatch")
+class MedicalCreate(CreateView):
     """
     Форма добавления углубленного обследования
     """
 
-    model = UMO
-    form_class = UMOForm
-    template_name = "registry/umo/create.html"
+    model = Medical
+    form_class = MedicalForm
+    template_name = "registry/medical/create.html"
 
     def form_valid(self, form):
         obj = form.save(commit=False)

@@ -7,16 +7,25 @@
 {% endblock head %}
 
 {% block body %}
-  <div class="sidebar" data-color="purple" data-background-color="white" data-image="">
+
+  <div class="sidebar" data-color="purple" data-background-color="black" data-image="https://c.stocksy.com/a/SEU100/z9/354544.jpg">
     <div class="logo">
       <a href="" class="simple-text logo-normal">
         ИНЭКС СОО
       </a>
     </div>
+
     <div class="sidebar-wrapper">
-      <ul class="nav">
-        {% include "components/sidebar.html" %}
-      </ul>
+      <div class="card-body card-profile mt-0 mb-0">
+        <h4 class="card-title text-center">{{ user.last_name }} {{ user.first_name }}</h4>
+        <h6 class="card-category text-gray text-left">username: {{ user.username }}</h6>
+        <h6 class="card-category text-gray text-left">Статус: Тренер</h6>
+        {% comment %} <p class="card-description">
+          Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+        </p> {% endcomment %}
+        <a href="{% url 'auth:logout' %}" class="btn btn-primary btn-round center">Log out</a>
+      </div>
+      {% include "components/sidebar.html" %}
     </div>
   </div>
   <div class="main-panel">

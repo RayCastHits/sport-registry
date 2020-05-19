@@ -49,10 +49,19 @@ class PrimaryAdmin(admin.ModelAdmin):
 admin.site.register(models.Primary, PrimaryAdmin)
 
 
-class UMOAdmin(admin.ModelAdmin):
+class MedicalAdmin(admin.ModelAdmin):
     list_display = [
         "sportsman",
     ]
 
 
-admin.site.register(models.UMO, UMOAdmin)
+admin.site.register(models.Medical, MedicalAdmin)
+
+
+class SportResultAdmin(admin.ModelAdmin):
+    list_display = [
+        "sportsman",
+    ]
+
+
+admin.site.register(models.SportResult, SportResultAdmin)

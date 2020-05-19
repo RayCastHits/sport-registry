@@ -39,7 +39,7 @@ class PrimaryForm(ModelForm):
         exclude = ["sportsman"]
 
 
-class UMOForm(ModelForm):
+class MedicalForm(ModelForm):
     class Meta:
-        model = models.UMO
+        model = models.Medical
         exclude = ["sportsman"]
