@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col-md-8.5">
+    <div class="col-md-9">
       <div class="card">
         <div class="card-header card-header-primary">
           <h4 class="card-title">{{ object }}</h4>
@@ -17,12 +17,12 @@
                   Информация
                   </a>
                 </li>
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                   <a class="nav-link" href="#prize" data-toggle="tab">
                     <i class="material-icons">emoji_events</i>
                   Соревнования
                   </a>
-                </li>
+                </li> {% endcomment %}
                 <li class="nav-item">
                   <a class="nav-link" href="#parent" data-toggle="tab">
                     <i class="material-icons">supervisor_account</i>
@@ -91,7 +91,10 @@
                     </tr>
                   </tbody>
                 </table>
-                <a href="{% url 'registry:sportsman-update' object.pk %}" class="btn btn-primary">Редактировать</a>
+                {% if user.role == 0 or user.role == 1 %}
+                  <a href="{% url 'registry:sportsman-update' object.pk %}" class="btn
+                btn-primary">Редактировать</a>
+                {% endif %}
               </div>
               <div class="tab-pane" id="prize">
                 {% if sport_results %}
@@ -137,8 +140,10 @@
                     <div class="card-body">
                       <h4 class="card-title">Первичное обследование</h4>
                       <p class="text-success">Первичное обследование успешно пройдено</p>
-                      <a href="{% url 'registry:primary-detail' object.pk %}" class="btn btn-primary">Просмотреть</a>
-                      <a href="{% url 'registry:primary-update' object.pk %}" class="btn btn-primary">Редактировать</a>
+                      {% if user.role == 0 or user.role == 2 %}
+                        <a href="{% url 'registry:primary-detail' object.pk %}" class="btn btn-primary">Просмотреть</a>
+                        <a href="{% url 'registry:primary-update' object.pk %}" class="btn btn-primary">Редактировать</a>
+                      {% endif %}
                     </div>
                   </div>
                 {% else %}
@@ -146,7 +151,9 @@
                   <div class="card-body">
                     <h4 class="card-title">Первичное обследование</h4>
                     <p class="text-danger">Первичное обследование не пройдено</p>
-                    <a href="{% url 'registry:primary-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
+                    {% if user.role == 0 or user.role == 2 %}
+                      <a href="{% url 'registry:primary-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
+                    {% endif %}
                   </div>
                 </div>
                 {% endif %}
@@ -155,7 +162,9 @@
                     <div class="card-body">
                       <h4 class="card-title">Углубленное обследование</h4>
                       <p class="text-success">Имеется углубленное обследование</p>
-                      <a href="{% url 'registry:medical-create' object.pk %}" class="btn btn-primary">Добавить обследование</a>
+                      {% if user.role == 0 or user.role == 2 %}
+                        <a href="{% url 'registry:medical-create' object.pk %}" class="btn btn-primary">Добавить обследование</a>
+                      {% endif %}
                     </div>
                   </div>
                 {% else %}
@@ -163,7 +172,9 @@
                   <div class="card-body">
                     <h4 class="card-title">Углубленное обследование</h4>
                     <p class="text-danger">Углубленное обследование не пройдено</p>
-                    <a href="{% url 'registry:medical-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
+                    {% if user.role == 0 or user.role == 2 %}
+                      <a href="{% url 'registry:medical-create' object.pk %}" class="btn btn-primary">Пройти обследование</a>
+                    {% endif %}
                   </div>
                 </div>
                 {% endif %}

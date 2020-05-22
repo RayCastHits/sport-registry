@@ -9,14 +9,17 @@
       <div class="card">
         {% if object_list %}
           <div class="card-header card-header-primary">
-            <div class="card-icon">
+            {% comment %} <div class="card-icon">
               {{ object_list.count }}
-            </div>
+            </div> {% endcomment %}
             <h4 class="card-title">
-              <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
-                <i class="material-icons">add</i>
-              </a>
+              {% if user.role == 0 or user.role == 1 %}
+                <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                  <i class="material-icons">add</i>
+                </a>
+              {% endif %}
               {{object_list|first|verbose_name_plural}}
+              <span class="badge badge-light">{{ object_list.count }}</span>
             </h4>
           </div>
           <div class="card-body">
@@ -99,13 +102,15 @@
                         <i class="material-icons">person</i>
                       </a>
 
-                      <a href="{% url 'registry:sportsman-update' item.pk %}" title="Редактировать спортсмена" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
-                        <i class="material-icons">edit</i>
-                      </a>
+                      {% if user.role == 0 or user.role == 1 %}
+                        <a href="{% url 'registry:sportsman-update' item.pk %}" title="Редактировать спортсмена" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                          <i class="material-icons">edit</i>
+                        </a>
 
-                      <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
-                        <i class="material-icons">close</i>
-                      </a>
+                        <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
+                          <i class="material-icons">close</i>
+                        </a>
+                      {% endif %}
                     </td>
                   {% endfor %}
                 </tbody>

@@ -28,6 +28,7 @@
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label">{{form.date.label}}</label>
                       {% render_field form.date class+="form-control" %}
+
                     </div>
                   </div>
                   <div class="col mt-4">
@@ -38,8 +39,13 @@
                   </div>
                   <div class="col mt-4">
                     <div class="form-group bmd-form-group">
-                      <label class="bmd-label">{{form.weight.label}}</label>
+                      {% if form.weight.errors %}
+                        <label class="bmd-label">{{ form.weight.errors }}</label>
+                      {% else %}
+                        <label class="bmd-label">{{form.weight.label}}</label>
+                      {% endif %}
                       {% render_field form.weight class+="form-control" %}
+
                     </div>
                   </div>
                 </div>

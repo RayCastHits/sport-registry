@@ -1,0 +1,82 @@
+{% extends settings.TEMPLATE_LAYOUT %}
+{% load i18n static utils %}
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-11">
+
+      {% if params_list %}
+        <div class="card">
+          <form method="GET">
+            <select multiple="multiple" name="params[]">
+              {% for param in params_list %}
+                <option> {{param}} </option>
+              {% endfor %}
+            </select>
+
+            <button type="submit">Расчитать рейтинг</button>
+          </form>
+        </div>
+      {% endif %}
+
+      <div class="card">
+        {% if object_list %}
+          <div class="card-header card-header-primary">
+            <div class="card-icon">
+              {{ object_list.count }}
+            </div>
+            <h4 class="card-title">
+              <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                <i class="material-icons">add</i>
+              </a>
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="fresh-table">
+                <thead>
+                  <th class="text-center">№</th>
+                  <th class="text-center">Значение</th>
+                  <th class="text-center">rating</th>
+                </thead>
+                <tbody>
+                  {% for item in object_list %}
+
+                    {% comment %} <tr>
+                      {{ item }}
+                    </tr> {% endcomment %}
+                    <tr>
+                      <td class="text-center">{{ forloop.counter }}</td>
+                    <td>
+                      {{ item.rating_value }}
+                    </td>
+                    <td>
+                      {{ item.sportsman.name }}
+                    </td>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% else %}
+         <!-- TODO: сделать блок -->
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}
+
+{% block scripts %}
+  {% comment %} <script>
+    $('tr[data-href]').on("click", function() {
+      document.location = $(this).data('href');
+    });
+  </script> {% endcomment %}
+{% endblock scripts %}

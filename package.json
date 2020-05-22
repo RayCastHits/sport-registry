@@ -11,6 +11,7 @@
     "@fortawesome/fontawesome-free": "^5.12.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "bootstrap-material-design": "^4.1.1",
     "core-js": "^3.6.4",
     "jquery": "3.4.1",
     "js-cookie": "^2.2.1",

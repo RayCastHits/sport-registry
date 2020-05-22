@@ -276,6 +276,7 @@ class Primary(Survey):
     back_type = models.IntegerField(
         choices=BACK_SHAPE, blank=True, null=True, verbose_name="Форма спины",
     )
+    # TODO: повтор поля
     past_diseases = models.CharField(
         max_length=250,
         blank=True,

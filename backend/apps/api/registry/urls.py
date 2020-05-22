@@ -56,6 +56,7 @@ urlpatterns = [
         views.SportTypeCreate.as_view(),
         name="sporttype-create",
     ),
+    path("rating/", views.PrimaryRating.as_view(), name="primary-rating"),
     # path("rating/", include([
     #     path("primary/",),
     #     path("primary/",),

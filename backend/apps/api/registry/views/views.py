@@ -4,7 +4,7 @@ from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
+from django.contrib.auth.decorators import user_passes_test
 from ..models import (
     Sportsman,
     Parent,
@@ -15,6 +15,24 @@ from ..models import (
 )
 
 from ..forms import PrimaryForm, MedicalForm
+
+
+def role_trainer(user):
+    if user.role == 0:
+        return True
+    if user.role == 1:
+        return True
+    if user.role == 2:
+        return False
+
+
+def role_med(user):
+    if user.role == 0:
+        return True
+    if user.role == 1:
+        return False
+    if user.role == 2:
+        return True
 
 
 @method_decorator(login_required, name="dispatch")
@@ -52,6 +70,10 @@ class SportsmanDetail(DetailView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_trainer, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class SportsmanUpdate(UpdateView):
     """
     Форма обновления спортсменов
@@ -67,6 +89,10 @@ class SportsmanUpdate(UpdateView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_trainer, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class SportsmanCreate(CreateView):
     """
     Форма создания спортсмена
@@ -79,6 +105,10 @@ class SportsmanCreate(CreateView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_trainer, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class SportsmanDelete(DeleteView):
     """
     Удаление спортсмена
@@ -96,6 +126,10 @@ class SportTypeList(ListView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_trainer, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class SportTypeUpdate(UpdateView):
     """
     Форма обновления вида спорта
@@ -108,6 +142,10 @@ class SportTypeUpdate(UpdateView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_trainer, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class SportTypeCreate(CreateView):
     """
     Форма создания вида спорта
@@ -120,6 +158,10 @@ class SportTypeCreate(CreateView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_med, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class PrimaryCreate(CreateView):
     """
     Форма добавления первичного обследования
@@ -141,6 +183,10 @@ class PrimaryCreate(CreateView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_med, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class PrimaryUpdate(UpdateView):
     """
     Форма обновления первичного обследования
@@ -178,6 +224,10 @@ class PrimaryDetail(DetailView):
 
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(role_med, login_url="/", redirect_field_name=None,),
+    name="dispatch",
+)
 class MedicalCreate(CreateView):
     """
     Форма добавления углубленного обследования

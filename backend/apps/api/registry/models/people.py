@@ -50,7 +50,10 @@ class Sportsman(models.Model):
         blank=True, verbose_name="Умение плавать", null=True, choices=SWIMMING,
     )
     school_progress = models.IntegerField(
-        choices=SCHOOL_PROGRESS, verbose_name="Успеваемость в школе",
+        choices=SCHOOL_PROGRESS,
+        verbose_name="Успеваемость в школе",
+        blank=True,
+        null=True,
     )
     is_desire = models.BooleanField(
         blank=True, verbose_name="Желание заниматься спортом"
