@@ -40,6 +40,7 @@ class SportResult(models.Model):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
+        related_name="sport_result",
     )
     date = models.DateField(verbose_name="Дата")
     level = models.IntegerField(

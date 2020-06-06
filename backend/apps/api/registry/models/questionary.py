@@ -21,12 +21,9 @@ class Survey(models.Model):
     stage = models.IntegerField(
         choices=STAGE, blank=True, null=True, verbose_name="Этап",
     )
-    sportsman = models.ForeignKey(
-        Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен"
-    )
     weight = models.DecimalField(
         max_digits=4,
-        decimal_places=1,
+        decimal_places=2,
         blank=True,
         null=True,
         verbose_name="Вес тела (кг)",
@@ -224,6 +221,12 @@ class Primary(Survey):
         (1, "Эндоморф"),
         (2, "Мезоморф"),
     )
+    sportsman = models.ForeignKey(
+        Sportsman,
+        on_delete=models.CASCADE,
+        verbose_name="Спортсмен",
+        related_name="primary",
+    )
     diseases = models.CharField(
         max_length=250,
         blank=True,
@@ -416,6 +419,12 @@ class Medical(Survey):
     Углубленное медицинское обследование
     """
 
+    sportsman = models.ForeignKey(
+        Sportsman,
+        on_delete=models.CASCADE,
+        verbose_name="Спортсмен",
+        related_name="medical",
+    )
     ecg = models.PositiveIntegerField(
         blank=True, null=True, verbose_name="ЭКГ в покое"
     )
