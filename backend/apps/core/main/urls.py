@@ -9,6 +9,7 @@ urlpatterns = [
     path("auth/", include("django.contrib.auth.urls")),
     path("pages/", include("django.contrib.flatpages.urls")),
     path("registry/", include("apps.api.registry.urls")),
+    path("network/", include("apps.api.network.v1.routers")),
     path("", include("apps.api.auth.urls")),
     path("<slug:template>/", views.PageLoaderView.as_view(), name="page"),
 ]

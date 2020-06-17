@@ -56,6 +56,7 @@ django-constance = {extras = ["database"], version = "^2.6.0"}
 django-template-block-args = "^0.0.5"
 django-hijack = "^2.1.10"
 django-hijack-admin = "^2.1.10"
+rest-framework-generic-relations = "^2.0.0"
 
 
 [tool.poetry.dev-dependencies]

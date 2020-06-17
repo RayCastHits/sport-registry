@@ -1,6 +1,8 @@
 from django.db import models
 from .other import SportType, Rank
 
+from django.contrib.contenttypes.fields import GenericRelation
+
 
 class Sportsman(models.Model):
     """
@@ -82,6 +84,8 @@ class Sportsman(models.Model):
         blank=True,
         null=True,
     )
+
+    # sportresult = GenericRelation("SportResult", blank=True)
 
     def __str__(self):
         return "%s %s %s" % (self.surname, self.name, self.patronymic)

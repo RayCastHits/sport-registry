@@ -1,6 +1,9 @@
 from django.db import models
 from .people import Sportsman
 
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+
 
 class Distance(models.Model):
     """
@@ -34,14 +37,14 @@ class SportResult(models.Model):
         (2, "2 место"),
         (3, "3 место"),
     )
-    sportsman = models.ForeignKey(
-        Sportsman,
-        verbose_name="Спортсмен",
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        related_name="sport_result",
-    )
+    # sportsman = models.ForeignKey(
+    #     Sportsman,
+    #     verbose_name="Спортсмен",
+    #     on_delete=models.SET_NULL,
+    #     blank=True,
+    #     null=True,
+    #     related_name="sport_result",
+    # )
     date = models.DateField(verbose_name="Дата")
     level = models.IntegerField(
         verbose_name="Уровень соревнований", choices=LEVEL
@@ -56,8 +59,12 @@ class SportResult(models.Model):
         null=True,
     )
 
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")
+
     def __str__(self):
-        return "%s %s" % (self.date, self.sportsman)
+        return "%s %s" % (self.date, self.level)
 
     class Meta:
         verbose_name = "Спортивный результат"

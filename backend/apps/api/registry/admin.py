@@ -16,6 +16,14 @@ class ParentInline(admin.TabularInline):
     max_num = 2
 
 
+class ParentAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+    # max_num = 2
+
+
+admin.site.register(models.Parent, ParentAdmin)
+
+
 class SportsmanAdmin(admin.ModelAdmin):
     list_display = ["name", "surname", "patronymic", "gender"]
     inlines = [
@@ -60,7 +68,7 @@ admin.site.register(models.Medical, MedicalAdmin)
 
 class SportResultAdmin(admin.ModelAdmin):
     list_display = [
-        "sportsman",
+        "result",
     ]
 
 

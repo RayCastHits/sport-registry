@@ -26,39 +26,52 @@
       {% endif %}
 
       {% if request.path  == "/registry/sporttype/" %}
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'registry:sporttype-list' %}">
-          <p>
-            <span class="material-icons">
-            sports_soccer
-            </span>
-            Виды спорта
-          </p>
-        </a>
-      </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'registry:sporttype-list' %}">
+            <p>
+              <span class="material-icons">
+              sports_soccer
+              </span>
+              Виды спорта
+            </p>
+          </a>
+        </li>
       {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'registry:sporttype-list' %}">
-          <p>
-            <span class="material-icons">
-            sports_soccer
-            </span>
-            Виды спорта
-          </p>
-        </a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registry:sporttype-list' %}">
+            <p>
+              <span class="material-icons">
+              sports_soccer
+              </span>
+              Виды спорта
+            </p>
+          </a>
+        </li>
       {% endif %}
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'registry:primary-rating' %}">
-          <p>
-            <span class="material-icons">
-            emoji_events
-            </span>
-            Рейтинг
-          </p>
-        </a>
-      </li>
+      {% if request.path  == "/registry/rating/" %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'registry:primary-rating' %}">
+            <p>
+              <span class="material-icons">
+              emoji_events
+              </span>
+              Рейтинг
+            </p>
+          </a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registry:primary-rating' %}">
+            <p>
+              <span class="material-icons">
+              emoji_events
+              </span>
+              Рейтинг
+            </p>
+          </a>
+        </li>
+      {% endif %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'registry:sportsman-list' %}">
           <p>

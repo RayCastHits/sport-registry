@@ -13,17 +13,19 @@
               {{ object_list.count }}
             </div> {% endcomment %}
             <h4 class="card-title">
+
               {% if user.role == 0 or user.role == 1 %}
                 <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
                   <i class="material-icons">add</i>
                 </a>
               {% endif %}
+
               {{object_list|first|verbose_name_plural}}
               <span class="badge badge-light">{{ object_list.count }}</span>
             </h4>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive fresh-table full-color-orange">
               {% comment %} <table class="table table-hover">
                 <thead class=" text-primary">
                   <tr>
@@ -75,19 +77,62 @@
                   {% endfor %}
                 </tbody>
               </table> {% endcomment %}
-              <table id="fresh-table">
+              {% comment %} <table id="fresh-table" class="table">
                 <thead>
+                <tr>
                   <th class="text-center"></th>
-                  <th data-field="surname">{% verbose_name_field object_list|first "surname" %}</th>
+                  <th data-field="surname th-inner sortable both">{% verbose_name_field object_list|first "surname" %}</th>
                   <th data-field="name">{% verbose_name_field object_list|first "name" %}</th>
                   <th data-field="patronymic">{% verbose_name_field object_list|first "patronymic" %}</th>
                   <th class="text-right">Действия</th>
+                </tr>
+
                 </thead>
                 <tbody>
                   {% for item in object_list %}
                     <tr>
                       <td class="text-center">{{ forloop.counter }}</td>
-                      {% comment %} <td class="text-center">{{ item.id }}</td> {% endcomment %}
+                    <td>
+                      {{item.surname}}
+                    </td>
+                    <td>
+                      {{item.name}}
+                    </td>
+                    <td>
+                      {{item.patronymic}}
+                    </td>
+                    <td class="td-actions text-right">
+                      <a href="{% url 'registry:sportsman-detail' item.pk %}" title="Просмотреть спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                        <i class="material-icons">person</i>
+                      </a>
+
+                      {% if user.role == 0 or user.role == 1 %}
+                        <a href="{% url 'registry:sportsman-update' item.pk %}" title="Редактировать спортсмена" class="btn btn-success btn-fab btn-fab-mini" role="button" aria-disabled="true">
+                          <i class="material-icons">edit</i>
+                        </a>
+
+                        <a href="" class="btn btn-danger btn-fab btn-fab-mini" title="Удалить спортсмена" role="button" aria-disabled="true">
+                          <i class="material-icons">close</i>
+                        </a>
+                      {% endif %}
+                    </td>
+                  {% endfor %}
+                </tbody>
+              </table> {% endcomment %}
+              <table class="tablemanager table table-hover">
+                <thead>
+                  <tr>
+                    <th class="">#</th>
+                    <th data-field="surname th-inner sortable both">{% verbose_name_field object_list|first "surname" %}</th>
+                    <th data-field="name">{% verbose_name_field object_list|first "name" %}</th>
+                    <th data-field="patronymic">{% verbose_name_field object_list|first "patronymic" %}</th>
+                    <th class="text-right">Действия</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in object_list %}
+                    <tr>
+                      <td class="text-center">{{ forloop.counter }}</td>
                     <td>
                       {{item.surname}}
                     </td>
@@ -120,6 +165,7 @@
         {% else %}
          <!-- TODO: сделать блок -->
         {% endif %}
+
       </div>
     </div>
   </div>
@@ -131,9 +177,21 @@
 {% endblock footer %}
 
 {% block scripts %}
-  {% comment %} <script>
-    $('tr[data-href]').on("click", function() {
-      document.location = $(this).data('href');
+  <script type="text/javascript">
+    $('.tablemanager').tablemanager({
+      firstSort: [[3,0],[2,0],[1,'asc']],
+      disable: ["last"],
+      appendFilterby: true,
+      dateFormat: [[4,"mm-dd-yyyy"]],
+      debug: true,
+      vocabulary: {
+      voc_filter_by: 'Фильтровать по',
+      voc_type_here_filter: 'Пусто',
+      voc_show_rows: 'Строк на странице'
+    },
+      pagination: true,
+      showrows: [5,10,20,50,100],
+      disableFilterBy: [1]
     });
-  </script> {% endcomment %}
+  </script>
 {% endblock scripts %}

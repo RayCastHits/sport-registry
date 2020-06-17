@@ -43,3 +43,15 @@ class MedicalForm(ModelForm):
     class Meta:
         model = models.Medical
         exclude = ["sportsman"]
+
+
+class ParentForm(ModelForm):
+    class Meta:
+        model = models.Parent
+        exclude = ["child"]
+
+
+class SportResultForm(ModelForm):
+    class Meta:
+        model = models.SportResult
+        exclude = ["content_object", "object_id", "content_type"]

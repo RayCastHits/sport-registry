@@ -14,15 +14,15 @@
                 <li class="nav-item">
                   <a class="nav-link active" href="#info" data-toggle="tab">
                     <i class="material-icons">description</i>
-                  Информация
+                    Информация
                   </a>
                 </li>
-                {% comment %} <li class="nav-item">
+                <li class="nav-item">
                   <a class="nav-link" href="#prize" data-toggle="tab">
                     <i class="material-icons">emoji_events</i>
-                  Соревнования
+                  Достижения
                   </a>
-                </li> {% endcomment %}
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#parent" data-toggle="tab">
                     <i class="material-icons">supervisor_account</i>
@@ -97,24 +97,30 @@
                 {% endif %}
               </div>
               <div class="tab-pane" id="prize">
+
                 {% if sport_results %}
                 <h4 class="card-title">Соревнования</h4>
-                  {% for sport_result in sport_results %}
+                  {% for address in sport_results.all %}
                     <div class="card card-nav-tabs">
                         <div class="card-body">
-                          <h5>Место: {{ sport_result.get_prize_display }}</h5>
-                          <p>Дата: {{ sport_result.date }}</p>
-                          <p>Уровень: {{ sport_result.get_level_display }}</p>
-                          <p>Результат: {{ sport_result.result }}</p>
-                          <p>Дистанция: {{ sport_result.distance }}</p>
-                          <a href="{% url 'registry:primary-update' object.pk %}" class="btn btn-primary">Редактировать</a>
+                          <h5><span class="font-weight-bold">Место: </span>{{ address.get_prize_display }}</h5>
+                          <p><span class="font-weight-bold">Дата: </span>{{ address.date }}</p>
+                          <p><span class="font-weight-bold">Уровень: </span>{{ address.get_level_display }}</p>
+                          <p><span class="font-weight-bold">Результат: </span>{{ address.result }}</p>
+                          <p><span class="font-weight-bold">Дистанция: </span>{{ address.distance }}</p>
+
+
+                          <a href="{% url 'registry:sportresult-primary-update' pk=object.pk sportrelust_pk=address.pk %}" class="btn
+                      btn-primary">Редактировать</a>
+
+
                         </div>
                       </div>
                   {% endfor %}
                 {% else %}
                 <h3>Нет соревнований</h3>
                 {% endif %}
-                <a href="{% url 'registry:primary-update' object.pk %}" class="btn btn-primary">Добавить</a>
+                {% comment %} <a href="{% url 'registry:sportresult-create' object.pk %}" class="btn btn-primary">Добавить</a> {% endcomment %}
               </div>
               <div class="tab-pane" id="parent">
                 {% if parents %}
@@ -127,19 +133,54 @@
                       <br/>
                       <span class="font-weight-bold">Электронная почта:</span>
                       {{ parent.email }}
+                      <br>
+                      {% if user.role == 0 or user.role == 1 %}
+                        <a href="{% url 'registry:parent-update' pk=object.pk parent_pk=parent.pk %}" class="btn
+                      btn-primary">Редактировать</a>
+                      {% endif %}
                     </div>
                   {% endfor %}
                 {% else %}
-                <h3>Нет представителей</h3>
+                  <h3>Нет представителей</h3>
                 {% endif %}
+                  {% if parents.count < 2 %}
+                    {% if user.role == 0 or user.role == 1 %}
+                      <a href="{% url 'registry:parent-create' object.pk %}" class="btn
+                    btn-primary">Добавить представителя</a>
+                    {% endif %}
+                  {% endif %}
+                {% comment %} <a href="{% url 'registry:parent-update' object.pk %}" class="btn btn-primary">Добавить</a> {% endcomment %}
               </div>
               <div class="tab-pane" id="questinary">
                 <h3>Обследования</h3>
+
+                <div class="row">
+                  <div class="col-md-4">
+                      <ul class="nav nav-pills nav-pills-primary flex-column">
+                        <li class="nav-item"><a class="nav-link active" href="#tab1" data-toggle="tab">Обследование</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#tab2" data-toggle="tab">Спортивные результаты</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-md-8">
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="tab1">
+                            Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                            <br><br>
+                            Dramatically visualize customer directed convergence without revolutionary ROI.
+                          </div>
+                          <div class="tab-pane" id="tab2">
+                            Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                            <br><br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                          </div>
+                      </div>
+                  </div>
+                </div>
                 {% if primarys %}
                   <div class="card card-nav-tabs">
                     <div class="card-body">
                       <h4 class="card-title">Первичное обследование</h4>
                       <p class="text-success">Первичное обследование успешно пройдено</p>
+                      <a href="{% url 'registry:sportresult-primary-create' object.pk %}" class="btn btn-primary">Добавить спортивный результат Первичное</a>
                       {% if user.role == 0 or user.role == 2 %}
                         <a href="{% url 'registry:primary-detail' object.pk %}" class="btn btn-primary">Просмотреть</a>
                         <a href="{% url 'registry:primary-update' object.pk %}" class="btn btn-primary">Редактировать</a>
@@ -162,6 +203,7 @@
                     <div class="card-body">
                       <h4 class="card-title">Углубленное обследование</h4>
                       <p class="text-success">Имеется углубленное обследование</p>
+                      <a href="{% url 'registry:sportresult-medical-create' object.pk %}" class="btn btn-primary">Добавить спортивный результат УМО</a>
                       {% if user.role == 0 or user.role == 2 %}
                         <a href="{% url 'registry:medical-create' object.pk %}" class="btn btn-primary">Добавить обследование</a>
                       {% endif %}
@@ -193,8 +235,10 @@
 
 {% block scripts %}
   <script>
-    $('tr[data-href]').on("click", function() {
-      document.location = $(this).data('href');
+    $(window).on('load', function(){
+      if(window.location.hash){
+        $('a[href="'+window.location.hash+'"]').trigger('click');
+      }
     });
   </script>
 {% endblock scripts %}

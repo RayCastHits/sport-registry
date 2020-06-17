@@ -5,11 +5,6 @@ app_name = "registry"
 
 urlpatterns = [
     path("sportsman/", views.SportsmanList.as_view(), name="sportsman-list"),
-    # path(
-    #     "sportsman/create/",
-    #     views.SportsmanCreate.as_view(),
-    #     name="sportsman-create",
-    # ),
     path(
         "sportsman/<int:pk>",
         views.SportsmanDetail.as_view(),
@@ -24,6 +19,16 @@ urlpatterns = [
         "sportsman/create/",
         views.SportsmanCreate.as_view(),
         name="sportsman-create",
+    ),
+    path(
+        "sportsman/<int:pk>/parent/create/",
+        views.ParentCreate.as_view(),
+        name="parent-create",
+    ),
+    path(
+        "sportsman/<int:pk>/parent/<int:parent_pk>/update/",
+        views.ParentUpdate.as_view(),
+        name="parent-update",
     ),
     path(
         "sportsman/<int:pk>/primary/create/",
@@ -57,10 +62,19 @@ urlpatterns = [
         name="sporttype-create",
     ),
     path("rating/", views.PrimaryRating.as_view(), name="primary-rating"),
-    # path("rating/", include([
-    #     path("primary/",),
-    #     path("primary/",),
-    #     path("primary/",),
-    #     path("primary/",),
-    # ])),
+    path(
+        "sportsman/<int:pk>/sportresult-primary/create/",
+        views.SportResultPrimaryCreate.as_view(),
+        name="sportresult-primary-create",
+    ),
+    path(
+        "sportsman/<int:pk>/sportresult-medical/create/",
+        views.SportResultMedicalCreate.as_view(),
+        name="sportresult-medical-create",
+    ),
+    path(
+        "sportsman/<int:pk>/sportresult-primary/<int:sportrelust_pk>/update/",
+        views.SportResultPrimaryUpdate.as_view(),
+        name="sportresult-primary-update",
+    ),
 ]

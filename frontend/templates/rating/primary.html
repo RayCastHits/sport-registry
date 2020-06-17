@@ -6,16 +6,20 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-11">
-
       {% if params_list %}
         <div class="card">
           <form method="GET">
-            <select multiple="multiple" name="params[]">
+            <fieldset>
+              {% for param in params_list %}
+                <input type="checkbox" multiple="multiple" name="params[]" value="{{param}}">{{param}}
+                <br>
+              {% endfor %}
+            </fieldset>
+            {% comment %} <select multiple="multiple" name="params[]">
               {% for param in params_list %}
                 <option> {{param}} </option>
               {% endfor %}
-            </select>
-
+            </select> {% endcomment %}
             <button type="submit">Расчитать рейтинг</button>
           </form>
         </div>

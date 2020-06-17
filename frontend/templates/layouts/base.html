@@ -14,7 +14,7 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'dashboard/material-dashboard.min.css' %}" />
-  <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+  {% comment %} <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" /> {% endcomment %}
   {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'dashboard/demo.css' %}" /> {% endcomment %}
   {% render_bundle 'chunk-vendors' 'css' %}
   {% render_bundle 'app' 'css' %}
@@ -29,8 +29,6 @@
   {% render_bundle 'chunk-vendors' 'js' %}
   {% render_bundle 'app' 'js' %}
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js" rel="stylesheet">
-
   <!--   Core JS Files   -->
   {% comment %} <script src="{% static 'dashboard/assets/js/core/popper.min.js' %}"></script> {% endcomment %}
   {% comment %} <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script> {% endcomment %}
@@ -41,7 +39,7 @@
 
   <script src="{% static 'dashboard/assets/js/plugins/perfect-scrollbar.jquery.min.js' %}"></script>
   <script src="{% static 'dashboard/assets/js/material-dashboard.js' %}" type="text/javascript"></script>
-  <script src="{% static 'bootstrap-table/assets/js/bootstrap-table.min.js' %}"></script>
+
   <!-- Plugin for the momentJs  -->
   {% comment %} <script src="{% static 'dashboard/assets/js/plugins/moment.min.js' %}"></script> {% endcomment %}
   <!--  Plugin for Sweet Alert -->
@@ -251,7 +249,12 @@
 
   {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script> {% endcomment %}
   {% comment %} <script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.min.js"></script> {% endcomment %}
-  <script type="text/javascript">
+
+  {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'dashboard/fresh-bootstrap-table.css' %}" /> {% endcomment %}
+  {% comment %} <script src="{% static 'bootstrap-table/assets/js/bootstrap-table.min.js' %}"></script> {% endcomment %}
+  <script src="{% static 'dashboard/tableManager.js' %}"></script>
+
+  {% comment %} <script type="text/javascript">
     var $table = $('#fresh-table')
 
     $(function () {
@@ -265,7 +268,7 @@
         showColumns: true,
         pagination: true,
         striped: false,
-        sortable: false,
+        sortable: true,
         pageSize: 5,
         pageList: [5, 10, 25, 50, 100],
 
@@ -277,7 +280,7 @@
         }
       })
     })
-  </script>
+  </script> {% endcomment %}
 
   {% block bottom %}{% endblock bottom %}
 </body>

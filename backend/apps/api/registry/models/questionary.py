@@ -1,5 +1,8 @@
 from django.db import models
 from .people import Sportsman
+from .sport_result import SportResult
+
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Survey(models.Model):
@@ -171,7 +174,7 @@ class Survey(models.Model):
     )
 
     def __str__(self):
-        return "%s %s" % (self.date, self.sportsman)
+        return "%s" % (self.date)
 
     class Meta:
         ordering = ("date",)
@@ -405,13 +408,21 @@ class Primary(Survey):
     #     Sport_type, blank=True, null=True, verbose_name="Рекомендации"
     # )  #
 
+    # content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    # object_id = models.PositiveIntegerField()
+    # content_object = GenericForeignKey("content_type", "object_id")
+
+    sportresult = GenericRelation(
+        "SportResult", blank=True, related_query_name="sport_result"
+    )
+
     def __str__(self):
         return "%s %s" % (self.date, self.stage)
 
     class Meta:
         ordering = ("date",)
-        verbose_name = "Первичное"
-        verbose_name_plural = "Первичные"
+        verbose_name = "Первичное обследование"
+        verbose_name_plural = "Первичные обследования"
 
 
 class Medical(Survey):
@@ -467,6 +478,10 @@ class Medical(Survey):
     )
     functional_reserves = models.PositiveIntegerField(
         blank=True, null=True, verbose_name="Функциональные резервы"
+    )
+
+    sportresult = GenericRelation(
+        "SportResult", blank=True, related_query_name="sport_result"
     )
 
     def __str__(self):
