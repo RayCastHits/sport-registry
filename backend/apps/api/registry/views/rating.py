@@ -40,4 +40,5 @@ class PrimaryRating(View):
                 "object_list": get_primary_rating(Primary, Sportsman, params),
                 "params_list": ALL_PARAMS,
             }
+            # context["params"] = ALL_PARAMS.get_params_display()
         return render(request, self.template_name, context)

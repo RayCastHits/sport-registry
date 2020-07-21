@@ -14,7 +14,13 @@ from ..models import (
     SportResult,
 )
 
-from ..forms import PrimaryForm, MedicalForm, ParentForm, SportResultForm
+from ..forms import (
+    PrimaryForm,
+    MedicalForm,
+    ParentForm,
+    SportResultForm,
+    SportsmanForm,
+)
 from django.shortcuts import redirect
 
 from django.contrib.contenttypes.models import ContentType
@@ -84,7 +90,8 @@ class SportsmanUpdate(UpdateView):
     """
 
     model = Sportsman
-    fields = "__all__"
+    form_class = SportsmanForm
+    # fields = "__all__"
     template_name = "registry/sportsman/update.html"
 
     def get_success_url(self):
@@ -117,6 +124,16 @@ class SportsmanDelete(DeleteView):
     """
     Удаление спортсмена
     """
+
+    # template_name = "registry/sportsman/delete.html"
+    # success_url = reverse_lazy("registry:sporttype-list")
+
+    # def get_object(self):
+    #     pk = self.kwargs.get("pk")
+    #     return get_object_or_404(Sportsman, pk=pk)
+
+    # def get_object(self):
+    #     return SportResult.objects.get(pk=self.kwargs["sportrelust_pk"])
 
 
 @method_decorator(login_required, name="dispatch")
@@ -174,6 +191,9 @@ class ParentCreate(CreateView):
     model = Parent
     form_class = ParentForm
     template_name = "registry/sportsman/parent/create.html"
+
+    # model = Sportsman
+    # template_name = "registry/sportsman/parent/create.html"
 
     def form_valid(self, form):
         obj = form.save(commit=False)

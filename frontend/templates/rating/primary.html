@@ -8,42 +8,53 @@
     <div class="col-md-11">
       {% if params_list %}
         <div class="card">
-          <form method="GET">
-            <fieldset>
-              {% for param in params_list %}
-                <input type="checkbox" multiple="multiple" name="params[]" value="{{param}}">{{param}}
-                <br>
-              {% endfor %}
-            </fieldset>
-            {% comment %} <select multiple="multiple" name="params[]">
-              {% for param in params_list %}
-                <option> {{param}} </option>
-              {% endfor %}
-            </select> {% endcomment %}
-            <button type="submit">Расчитать рейтинг</button>
-          </form>
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Выбор параметров</h4>
+            <p class="card-category">Выбор параметров учавствующих в расчете рейтинга</p>
+          </div>
+          <div class="card-body">
+            <form method="GET">
+              <fieldset>
+                <table class="table">
+                  <tbody>
+                    {% for param in params_list %}
+                      <tr>
+                        <td>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" name="params[]" value="{{param}}" checked="">
+                              <span class="form-check-sign">
+                                <span class="check"></span>
+                              </span>
+                            </label>
+                          </div>
+                        </td>
+                        <td>{{param}}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              <button type="submit" class="btn btn-primary pull-right">Расчитать рейтинг</button>
+            </form>
+          </div>
         </div>
       {% endif %}
 
       <div class="card">
         {% if object_list %}
           <div class="card-header card-header-primary">
-            <div class="card-icon">
-              {{ object_list.count }}
-            </div>
-            <h4 class="card-title">
-              <a href="{% url 'registry:sportsman-create' %}" title="Добавить спортсмена" class="btn btn-primary btn-fab btn-fab-mini" role="button" aria-disabled="true">
-                <i class="material-icons">add</i>
-              </a>
-            </h4>
+            <h4 class="card-title">Первичные</h4>
+            <p class="card-category">Вывод рейтинга по первичным медицинским обследованиям обследованиям</p>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table id="fresh-table">
+            <div class="table-responsive fresh-table full-color-orange">
+              <table class="tablemanager table table-hover">
                 <thead>
-                  <th class="text-center">№</th>
-                  <th class="text-center">Значение</th>
-                  <th class="text-center">rating</th>
+                  <th class="">Рейтинг</th>
+                  {% comment %} <th class="">Значение</th> {% endcomment %}
+                  <th class="">Фамилия</th>
+                  <th class="">Имя</th>
+                  <th class="">Отчество</th>
                 </thead>
                 <tbody>
                   {% for item in object_list %}
@@ -52,16 +63,24 @@
                       {{ item }}
                     </tr> {% endcomment %}
                     <tr>
-                      <td class="text-center">{{ forloop.counter }}</td>
-                    <td>
+                      <td class="">{{ forloop.counter }}</td>
+                    {% comment %} <td>
                       {{ item.rating_value }}
+                    </td> {% endcomment %}
+                    <td>
+                      {{ item.sportsman.surname }}
                     </td>
                     <td>
                       {{ item.sportsman.name }}
                     </td>
+                    <td>
+                      {{ item.sportsman.patronymic }}
+                    </td>
                   {% endfor %}
+
                 </tbody>
               </table>
+
             </div>
           </div>
         {% else %}
@@ -78,9 +97,21 @@
 {% endblock footer %}
 
 {% block scripts %}
-  {% comment %} <script>
-    $('tr[data-href]').on("click", function() {
-      document.location = $(this).data('href');
+<script type="text/javascript">
+    $('.tablemanager').tablemanager({
+      firstSort: [[3,0],[2,0],[1,'asc']],
+      disable: ["last"],
+      appendFilterby: true,
+      dateFormat: [[4,"mm-dd-yyyy"]],
+      debug: true,
+      vocabulary: {
+      voc_filter_by: 'Фильтровать по',
+      voc_type_here_filter: 'Пусто',
+      voc_show_rows: 'Строк на странице'
+    },
+      pagination: true,
+      showrows: [5,10,20,50,100],
+      disableFilterBy: [1]
     });
-  </script> {% endcomment %}
+  </script>
 {% endblock scripts %}

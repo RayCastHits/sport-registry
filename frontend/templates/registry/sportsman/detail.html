@@ -99,21 +99,37 @@
               <div class="tab-pane" id="prize">
 
                 {% if sport_results %}
-                <h4 class="card-title">Соревнования</h4>
+                <h3>Соревнования</h3>
                   {% for address in sport_results.all %}
                     <div class="card card-nav-tabs">
                         <div class="card-body">
-                          <h5><span class="font-weight-bold">Место: </span>{{ address.get_prize_display }}</h5>
-                          <p><span class="font-weight-bold">Дата: </span>{{ address.date }}</p>
-                          <p><span class="font-weight-bold">Уровень: </span>{{ address.get_level_display }}</p>
-                          <p><span class="font-weight-bold">Результат: </span>{{ address.result }}</p>
-                          <p><span class="font-weight-bold">Дистанция: </span>{{ address.distance }}</p>
-
+                          <table class="table table-hover">
+                            <tbody>
+                              <tr>
+                                  <td><span class="font-weight-bold">Место:</span></td>
+                                  <td>{{ address.get_prize_display }}</td>
+                              </tr>
+                              <tr>
+                                <td><span class="font-weight-bold">Дата:</span></td>
+                                <td>{{ address.date }}</td>
+                              </tr>
+                              <tr>
+                                <td><span class="font-weight-bold">Уровень:</span></td>
+                                <td>{{ address.get_level_display }}</td>
+                              </tr>
+                              <tr>
+                                <td><span class="font-weight-bold">Результат:</span></td>
+                                <td>{{ address.result }}</td>
+                              </tr>
+                              <tr>
+                                <td><span class="font-weight-bold">Дистанция:</span></td>
+                                <td>{{ address.distance }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
 
                           <a href="{% url 'registry:sportresult-primary-update' pk=object.pk sportrelust_pk=address.pk %}" class="btn
                       btn-primary">Редактировать</a>
-
-
                         </div>
                       </div>
                   {% endfor %}
@@ -126,19 +142,37 @@
                 {% if parents %}
                   <h3>Представители</h3>
                   {% for parent in parents %}
-                    <div class="my-4">
-                      <h5>{{ parent }}</h5>
-                      <span class="font-weight-bold">Контактный номер:</span>
-                      {{ parent.telephone }}
-                      <br/>
-                      <span class="font-weight-bold">Электронная почта:</span>
-                      {{ parent.email }}
-                      <br>
-                      {% if user.role == 0 or user.role == 1 %}
-                        <a href="{% url 'registry:parent-update' pk=object.pk parent_pk=parent.pk %}" class="btn
-                      btn-primary">Редактировать</a>
-                      {% endif %}
-                    </div>
+                    <div class="card card-nav-tabs">
+                        <div class="card-body">
+                          <div class="my-4">
+                            <h4 class = "">{{ parent }}</h4>
+                            <table class="table table-hover">
+                              <tbody>
+                                <tr>
+                                  <td><span class="font-weight-bold">Контактный номер:</span></td>
+                                  <td>{{ parent.email }}</td>
+                                </tr>
+                                <tr>
+                                  <td><span class="font-weight-bold">Электронная почта:</span></td>
+                                  <td>{{ parent.telephone }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            {% comment %} <span class="font-weight-bold">Контактный номер:</span>
+                            {{ parent.telephone }}
+                            <br/>
+                            <span class="font-weight-bold">Электронная почта:</span>
+                            {{ parent.email }}
+                            <br/>
+                            <br/> {% endcomment %}
+                            {% if user.role == 0 or user.role == 1 %}
+                              <a href="{% url 'registry:parent-update' pk=object.pk parent_pk=parent.pk %}" class="btn
+                            btn-primary">Редактировать</a>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
                   {% endfor %}
                 {% else %}
                   <h3>Нет представителей</h3>
@@ -154,33 +188,15 @@
               <div class="tab-pane" id="questinary">
                 <h3>Обследования</h3>
 
-                <div class="row">
-                  <div class="col-md-4">
-                      <ul class="nav nav-pills nav-pills-primary flex-column">
-                        <li class="nav-item"><a class="nav-link active" href="#tab1" data-toggle="tab">Обследование</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab2" data-toggle="tab">Спортивные результаты</a></li>
-                      </ul>
-                  </div>
-                  <div class="col-md-8">
-                      <div class="tab-content">
-                          <div class="tab-pane active" id="tab1">
-                            Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                            <br><br>
-                            Dramatically visualize customer directed convergence without revolutionary ROI.
-                          </div>
-                          <div class="tab-pane" id="tab2">
-                            Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                            <br><br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
-                          </div>
-                      </div>
-                  </div>
-                </div>
-                {% if primarys %}
+                {% if Medical %}
+                  {% for medical in Medical %}
+                    {{ medical }}
+                  {% endfor %}
                   <div class="card card-nav-tabs">
                     <div class="card-body">
                       <h4 class="card-title">Первичное обследование</h4>
                       <p class="text-success">Первичное обследование успешно пройдено</p>
-                      <a href="{% url 'registry:sportresult-primary-create' object.pk %}" class="btn btn-primary">Добавить спортивный результат Первичное</a>
+                      <a href="{% url 'registry:sportresult-primary-create' object.pk %}" class="btn btn-primary">Добавить спортивный результат</a>
                       {% if user.role == 0 or user.role == 2 %}
                         <a href="{% url 'registry:primary-detail' object.pk %}" class="btn btn-primary">Просмотреть</a>
                         <a href="{% url 'registry:primary-update' object.pk %}" class="btn btn-primary">Редактировать</a>

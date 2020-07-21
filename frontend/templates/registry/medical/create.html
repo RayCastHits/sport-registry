@@ -23,7 +23,7 @@
           <div class="card-body">
             <form method="POST">
               {% csrf_token %}
-                <div class="row">
+              <div class="row">
                   <div class="col mt-4">
                     <div class="form-group bmd-form-group">
                       <label class="bmd-label">{{form.date.label}}</label>
@@ -287,7 +287,6 @@
                       {% render_field form.functional_reserves class+="form-control" %}
                     </div>
                   </div>
-                </div>
               <button type="submit" class="btn btn-success pull-right">Сохранить</button>
             </form>
           </div>
